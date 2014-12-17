@@ -1,4 +1,4 @@
-import * as LogManager from '../lib/index';
+import * as LogManager from '../src/index';
 
 describe('log manager', () => {
   it('should have some tests', () => {

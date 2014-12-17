@@ -1,0 +1,16 @@
+{
+  "name": "aurelia-logging",
+  "version": "0.1.0",
+  "description": "A minimal but effective logging mechanism with support for log levels and pluggable log appenders.",
+  "keywords": [
+    "aurelia",
+    "logging"
+  ],
+  "homepage": "http://aurelia.io",
+  "license": "MIT",
+  "authors": ["Rob Eisenberg <rob@bluespire.com> (http://robeisenberg.com/)"],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aurelia/logging"
+  }
+}
