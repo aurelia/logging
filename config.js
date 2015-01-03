@@ -1,5 +1,7 @@
 System.config({
   "paths": {
-    "*": "*.js"
+    "*": "*.js",
+    "aurelia-logging/*": "dist/*.js"
   }
 });
+
