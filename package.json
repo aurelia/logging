@@ -18,10 +18,10 @@
     "url": "http://github.com/aurelia/logging"
   },
   "jspm": {
+    "main": "amd/index",
     "directories": {
       "lib": "dist"
-    },
-    "main": "amd/index"
+    }
   },
   "devDependencies": {
     "aurelia-tools": "git://github.com/aurelia/tools.git",
