@@ -1,18 +1,12 @@
-define(["exports"], function (exports) {
+System.register([], function (_export) {
   "use strict";
 
-  exports.getLogger = getLogger;
-  exports.addAppender = addAppender;
-  exports.setLevel = setLevel;
-  var levels = exports.levels = {
-    none: 0,
-    error: 1,
-    warn: 2,
-    info: 3,
-    debug: 4
-  };
+  var levels, loggers, logLevel, appenders, slice, loggerConstructionKey, Logger;
+  _export("getLogger", getLogger);
 
-  var loggers = {}, logLevel = levels.none, appenders = [], slice = Array.prototype.slice, loggerConstructionKey = {};
+  _export("addAppender", addAppender);
+
+  _export("setLevel", setLevel);
 
   function log(logger, level, args) {
     var i = appenders.length, current;
@@ -93,21 +87,38 @@ define(["exports"], function (exports) {
     logLevel = level;
   }
 
-  var Logger = function Logger(id, key) {
-    if (key !== loggerConstructionKey) {
-      throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
+  return {
+    setters: [],
+    execute: function () {
+      levels = _export("levels", {
+        none: 0,
+        error: 1,
+        warn: 2,
+        info: 3,
+        debug: 4
+      });
+      loggers = {};
+      logLevel = levels.none;
+      appenders = [];
+      slice = Array.prototype.slice;
+      loggerConstructionKey = {};
+      Logger = function Logger(id, key) {
+        if (key !== loggerConstructionKey) {
+          throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
+        }
+
+        this.id = id;
+      };
+
+      Logger.prototype.debug = function () {};
+
+      Logger.prototype.info = function () {};
+
+      Logger.prototype.warn = function () {};
+
+      Logger.prototype.error = function () {};
+
+      _export("Logger", Logger);
     }
-
-    this.id = id;
   };
-
-  Logger.prototype.debug = function () {};
-
-  Logger.prototype.info = function () {};
-
-  Logger.prototype.warn = function () {};
-
-  Logger.prototype.error = function () {};
-
-  exports.Logger = Logger;
 });

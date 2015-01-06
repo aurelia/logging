@@ -3,7 +3,15 @@
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
 exports.setLevel = setLevel;
-var loggers = {}, logLevel = 0, appenders = [], slice = Array.prototype.slice, loggerConstructionKey = {};
+var levels = exports.levels = {
+  none: 0,
+  error: 1,
+  warn: 2,
+  info: 3,
+  debug: 4
+};
+
+var loggers = {}, logLevel = levels.none, appenders = [], slice = Array.prototype.slice, loggerConstructionKey = {};
 
 function log(logger, level, args) {
   var i = appenders.length, current;
@@ -66,13 +74,6 @@ function createLogger(id) {
   return logger;
 }
 
-var levels = exports.levels = {
-  error: 1,
-  warn: 2,
-  info: 3,
-  debug: 4
-};
-
 function getLogger(id) {
   return loggers[id] || (loggers[id] = createLogger(id));
 }
@@ -91,24 +92,20 @@ function setLevel(level) {
   logLevel = level;
 }
 
-var Logger = (function () {
-  var Logger = function Logger(id, key) {
-    if (key !== loggerConstructionKey) {
-      throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
-    }
+var Logger = function Logger(id, key) {
+  if (key !== loggerConstructionKey) {
+    throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
+  }
 
-    this.id = id;
-  };
+  this.id = id;
+};
 
-  Logger.prototype.debug = function () {};
+Logger.prototype.debug = function () {};
 
-  Logger.prototype.info = function () {};
+Logger.prototype.info = function () {};
 
-  Logger.prototype.warn = function () {};
+Logger.prototype.warn = function () {};
 
-  Logger.prototype.error = function () {};
-
-  return Logger;
-})();
+Logger.prototype.error = function () {};
 
 exports.Logger = Logger;

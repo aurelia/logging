@@ -1,5 +1,13 @@
+export var levels = {
+  none: 0,
+  error:1,
+  warn:2,
+  info:3,
+  debug:4
+};
+
 var loggers = {}, 
-    logLevel = 0,
+    logLevel = levels.none,
     appenders = [],
     slice = Array.prototype.slice,
     loggerConstructionKey = {};
@@ -65,13 +73,6 @@ function createLogger(id){
 
   return logger;
 }
-
-export var levels = {
-  error:1,
-  warn:2,
-  info:3,
-  debug:4
-};
 
 export function getLogger(id){
   return loggers[id] || (loggers[id] = createLogger(id));
