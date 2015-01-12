@@ -1,7 +1,7 @@
 System.register([], function (_export) {
   "use strict";
 
-  var levels, loggers, logLevel, appenders, slice, loggerConstructionKey, Logger;
+  var _prototypeProperties, levels, loggers, logLevel, appenders, slice, loggerConstructionKey, Logger;
   _export("getLogger", getLogger);
 
   _export("addAppender", addAppender);
@@ -90,6 +90,11 @@ System.register([], function (_export) {
   return {
     setters: [],
     execute: function () {
+      _prototypeProperties = function (child, staticProps, instanceProps) {
+        if (staticProps) Object.defineProperties(child, staticProps);
+        if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
+      };
+
       levels = _export("levels", {
         none: 0,
         error: 1,
@@ -102,22 +107,44 @@ System.register([], function (_export) {
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
-      Logger = function Logger(id, key) {
-        if (key !== loggerConstructionKey) {
-          throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
-        }
+      Logger = (function () {
+        var Logger = function Logger(id, key) {
+          if (key !== loggerConstructionKey) {
+            throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
+          }
 
-        this.id = id;
-      };
+          this.id = id;
+        };
 
-      Logger.prototype.debug = function () {};
+        _prototypeProperties(Logger, null, {
+          debug: {
+            value: function () {},
+            writable: true,
+            enumerable: true,
+            configurable: true
+          },
+          info: {
+            value: function () {},
+            writable: true,
+            enumerable: true,
+            configurable: true
+          },
+          warn: {
+            value: function () {},
+            writable: true,
+            enumerable: true,
+            configurable: true
+          },
+          error: {
+            value: function () {},
+            writable: true,
+            enumerable: true,
+            configurable: true
+          }
+        });
 
-      Logger.prototype.info = function () {};
-
-      Logger.prototype.warn = function () {};
-
-      Logger.prototype.error = function () {};
-
+        return Logger;
+      })();
       _export("Logger", Logger);
     }
   };
