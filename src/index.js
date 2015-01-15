@@ -1,3 +1,16 @@
+/**
+ * This library is part of the Aurelia platform and contains a minimal but effective logging mechanism
+ * with support for log levels and pluggable log appenders.
+ *
+ * @module logging
+ */
+
+ /**
+ * Enum specifying the levels of the logger
+* 
+* @property levels
+* @type {Enum}
+*/
 export var levels = {
   none: 0,
   error:1,
@@ -74,6 +87,11 @@ function createLogger(id){
   return logger;
 }
 
+﻿/**
+ * Gets an instance of a logger by the Id used when creating.
+ * Returns the instance of the logger, or creates a new logger if none exists for that Id.
+ * @param {int} id - The id of the logger you wish to get an instance of.
+ */
 export function getLogger(id){
   return loggers[id] || (loggers[id] = createLogger(id));
 }
@@ -88,10 +106,28 @@ export function addAppender(appender){
   }
 }
 
+﻿/**
+ * Sets the level of the logging for the application loggers
+ * @param {int} level - matches an enum specifying the level of logging.
+ */
 export function setLevel(level){
   logLevel = level;
 }
 
+/**
+* The logging module encapsulates all logic related to logging.
+* The logger is essentially responsible for having log statements that appear during debugging but are squelched
+* when using the build tools, depending on the log level that is set.  The available levels are -
+* 1. none
+* 2. error
+* 3. warn
+* 4. info
+* 5. debug
+* you cannot instantiate the logger directly - you must use the getLogger method instead.*
+*
+* @class Logger
+* @constructor
+*/
 export class Logger {
   constructor(id, key){
     if(key !== loggerConstructionKey){
