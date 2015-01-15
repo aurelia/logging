@@ -68,11 +68,6 @@ function connectLogger(logger){
   logger.error = error;
 }
 
-﻿/**
- * Create an instance of a logger.  Multiple logger instances can be instantiated.
- * Returns the instance of the logger.
- * @param {int} id - The id of the logger you wish to create an instance of.
- */
 function createLogger(id){
   var logger = new Logger(id, loggerConstructionKey);
 
@@ -86,7 +81,6 @@ function createLogger(id){
 ﻿/**
  * Gets an instance of a logger by the Id used when creating.
  * Returns the instance of the logger, or creates a new logger if none exists for that Id.
- * Alias for createLogger(id); getLogger(id);
  * @param {int} id - The id of the logger you wish to get an instance of.
  */
 export function getLogger(id){
