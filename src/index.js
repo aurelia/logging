@@ -9,7 +9,7 @@
  * Enum specifying the levels of the logger
  * 
  * @property levels
- * @type {Enum}
+ * @type Enum
  * @for export
  */
 export var levels = {
@@ -92,7 +92,7 @@ function createLogger(id){
  * Gets an instance of a logger by the Id used when creating.
  *
  * @method getLogger
- * @param {string} id - The id of the logger you wish to get an instance of.
+ * @param {string} id The id of the logger you wish to get an instance of.
  * @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
  * @for export
  */
@@ -104,7 +104,7 @@ export function getLogger(id){
  * Adds an appender capable of processing logs and channeling them to an output.
  *
  * @method addAppender
- * @param {object} appender - An appender instance to begin processing logs with.
+ * @param {Object} appender An appender instance to begin processing logs with.
  * @for export
  */
 export function addAppender(appender){
@@ -121,7 +121,7 @@ export function addAppender(appender){
  * Sets the level of the logging for the application loggers
  *
  * @method setLevel
- * @param {int} level - matches an enum specifying the level of logging.
+ * @param {Number} level Matches an enum specifying the level of logging.
  * @for export
  */
 export function setLevel(level){
@@ -155,7 +155,7 @@ export class Logger {
    * Logs a debug message.
    *
    * @method debug
-   * @param {string} message - the message to log
+   * @param {string} message The message to log
    */
   debug(){}
 
@@ -163,7 +163,7 @@ export class Logger {
    * Logs info.
    *
    * @method info
-   * @param {string} message - the message to log
+   * @param {string} message The message to log
    */
   info(){}
 
@@ -171,7 +171,7 @@ export class Logger {
    * Logs a warning.
    *
    * @method warn
-   * @param {string} message - the message to log
+   * @param {string} message The message to log
    */
   warn(){}
 
@@ -179,7 +179,7 @@ export class Logger {
    * Logs an error.
    *
    * @method error
-   * @param {string} message - the message to log
+   * @param {string} message The message to log
    */
   error(){}
 }
