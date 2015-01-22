@@ -9,7 +9,8 @@ System.register([], function (_export) {
   _export("setLevel", setLevel);
 
   function log(logger, level, args) {
-    var i = appenders.length, current;
+    var i = appenders.length,
+        current;
 
     args = slice.call(args);
     args.unshift(logger);
@@ -108,35 +109,35 @@ System.register([], function (_export) {
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
       Logger = (function () {
-        var Logger = function Logger(id, key) {
+        function Logger(id, key) {
           if (key !== loggerConstructionKey) {
             throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
           }
 
           this.id = id;
-        };
+        }
 
         _prototypeProperties(Logger, null, {
           debug: {
-            value: function () {},
+            value: function debug() {},
             writable: true,
             enumerable: true,
             configurable: true
           },
           info: {
-            value: function () {},
+            value: function info() {},
             writable: true,
             enumerable: true,
             configurable: true
           },
           warn: {
-            value: function () {},
+            value: function warn() {},
             writable: true,
             enumerable: true,
             configurable: true
           },
           error: {
-            value: function () {},
+            value: function error() {},
             writable: true,
             enumerable: true,
             configurable: true

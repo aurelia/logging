@@ -1,3 +1,7 @@
+### 0.2.2 (2015-01-22)
+
+* Added preliminary API docs.
+
 ### 0.2.1 (2015-01-12)
 
 * Compiled output update.
