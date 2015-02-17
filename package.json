@@ -49,7 +49,8 @@
   "aurelia": {
     "usedBy": [
       "aurelia-framework",
-      "aurelia-templating"
+      "aurelia-templating",
+      "aurelia-templating-resources"
     ],
     "documentation": {
       "links": [
