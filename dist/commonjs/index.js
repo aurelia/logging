@@ -1,9 +1,6 @@
 "use strict";
 
-var _prototypeProperties = function (child, staticProps, instanceProps) {
-  if (staticProps) Object.defineProperties(child, staticProps);
-  if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
-};
+var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
 
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
@@ -102,7 +99,7 @@ function setLevel(level) {
   logLevel = level;
 }
 
-var Logger = (function () {
+var Logger = exports.Logger = (function () {
   function Logger(id, key) {
     if (key !== loggerConstructionKey) {
       throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
@@ -115,30 +112,25 @@ var Logger = (function () {
     debug: {
       value: function debug() {},
       writable: true,
-      enumerable: true,
       configurable: true
     },
     info: {
       value: function info() {},
       writable: true,
-      enumerable: true,
       configurable: true
     },
     warn: {
       value: function warn() {},
       writable: true,
-      enumerable: true,
       configurable: true
     },
     error: {
       value: function error() {},
       writable: true,
-      enumerable: true,
       configurable: true
     }
   });
 
   return Logger;
 })();
-
-exports.Logger = Logger;
+exports.__esModule = true;

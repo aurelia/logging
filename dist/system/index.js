@@ -91,10 +91,7 @@ System.register([], function (_export) {
   return {
     setters: [],
     execute: function () {
-      _prototypeProperties = function (child, staticProps, instanceProps) {
-        if (staticProps) Object.defineProperties(child, staticProps);
-        if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
-      };
+      _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
 
       levels = _export("levels", {
         none: 0,
@@ -108,7 +105,7 @@ System.register([], function (_export) {
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
-      Logger = (function () {
+      Logger = _export("Logger", (function () {
         function Logger(id, key) {
           if (key !== loggerConstructionKey) {
             throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
@@ -121,32 +118,27 @@ System.register([], function (_export) {
           debug: {
             value: function debug() {},
             writable: true,
-            enumerable: true,
             configurable: true
           },
           info: {
             value: function info() {},
             writable: true,
-            enumerable: true,
             configurable: true
           },
           warn: {
             value: function warn() {},
             writable: true,
-            enumerable: true,
             configurable: true
           },
           error: {
             value: function error() {},
             writable: true,
-            enumerable: true,
             configurable: true
           }
         });
 
         return Logger;
-      })();
-      _export("Logger", Logger);
+      })());
     }
   };
 });
