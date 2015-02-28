@@ -1,3 +1,7 @@
+### 0.2.4 (2015-02-27)
+
+* Updated compiler.
+
 ### 0.2.3 (2015-02-18)
 
 
@@ -20,4 +24,3 @@
 
 * **build:** update compiler and switch to register module format ([7eb9aec5](http://github.com/aurelia/logging/commit/7eb9aec56eb616c2bbfbb38e59b8813f3f42a2e9))
 * **logging:** Add new "none" log level. ([8f1ffdd6](http://github.com/aurelia/logging/commit/8f1ffdd6291c77874388944edc4a897d7078dcbd))
-
