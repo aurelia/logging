@@ -1,3 +1,11 @@
+### 0.2.5 (2015-02-28)
+
+
+#### Bug Fixes
+
+* **package:** change jspm directories ([29de7599](http://github.com/aurelia/logging/commit/29de75997081b59485313679e451ae53d0f58fe9))
+
+
 ### 0.2.4 (2015-02-27)
 
 * Updated compiler.
