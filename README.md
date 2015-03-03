@@ -12,6 +12,7 @@ This library has **NO** external dependencies.
 
 * [aurelia-framework](https://github.com/aurelia/framework)
 * [aurelia-templating](https://github.com/aurelia/templating)
+* [aurelia-templating-binding](https://github.com/aurelia/templating-binding)
 
 ## Platform Support
 
