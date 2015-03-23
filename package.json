@@ -50,6 +50,7 @@
     "usedBy": [
       "aurelia-framework",
       "aurelia-templating",
+      "aurelia-templating-binding",
       "aurelia-templating-resources"
     ],
     "documentation": {

@@ -6,8 +6,27 @@
  */
 
  /**
+ * Creates an instance of Error that aggregates and preserves an innerError.
+ *
+ * @class AggregateError
+ * @constructor
+ */
+ export function AggregateError(msg, inner) {
+  if (inner && inner.stack) {
+    msg += `\n------------------------------------------------\ninner error: ${inner.stack}`;
+  }
+
+  var err = new Error(msg);
+  if (inner) {
+    err.innerError = inner;
+  }
+
+  return err;
+}
+
+ /**
  * Enum specifying the levels of the logger
- * 
+ *
  * @property levels
  * @type Enum
  * @for export
@@ -20,14 +39,14 @@ export var levels = {
   debug:4
 };
 
-var loggers = {}, 
+var loggers = {},
     logLevel = levels.none,
     appenders = [],
     slice = Array.prototype.slice,
     loggerConstructionKey = {};
 
 function log(logger, level, args){
-  var i = appenders.length, 
+  var i = appenders.length,
           current;
 
   args = slice.call(args);
@@ -82,7 +101,7 @@ function createLogger(id){
   var logger = new Logger(id, loggerConstructionKey);
 
   if(appenders.length) {
-    connectLogger(logger);  
+    connectLogger(logger);
   }
 
   return logger;
