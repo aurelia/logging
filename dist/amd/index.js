@@ -6,6 +6,21 @@ define(["exports"], function (exports) {
   var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
   /**
+   * This library is part of the Aurelia platform and contains a minimal but effective logging mechanism
+   * with support for log levels and pluggable log appenders.
+   *
+   * @module logging
+   */
+
+  /**
+  * Creates an instance of Error that aggregates and preserves an innerError.
+  *
+  * @class AggregateError
+  * @constructor
+  */
+  exports.AggregateError = AggregateError;
+
+  /**
   * Gets an instance of a logger by the Id used when creating.
   *
   * @method getLogger
@@ -32,16 +47,23 @@ define(["exports"], function (exports) {
   * @for export
   */
   exports.setLevel = setLevel;
-  /**
-   * This library is part of the Aurelia platform and contains a minimal but effective logging mechanism
-   * with support for log levels and pluggable log appenders.
-   *
-   * @module logging
-   */
+
+  function AggregateError(msg, inner) {
+    if (inner && inner.stack) {
+      msg += "\n------------------------------------------------\ninner error: " + inner.stack;
+    }
+
+    var err = new Error(msg);
+    if (inner) {
+      err.innerError = inner;
+    }
+
+    return err;
+  }
 
   /**
   * Enum specifying the levels of the logger
-  * 
+  *
   * @property levels
   * @type Enum
   * @for export

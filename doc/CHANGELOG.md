@@ -1,3 +1,11 @@
+### 0.2.6 (2015-03-24)
+
+
+#### Features
+
+* **all:** enable error aggregation with new AggregateError ([88073ddb](http://github.com/aurelia/logging/commit/88073ddb7bb3d8c4ec86fb37d42978ae8c1b369f))
+
+
 ### 0.2.5 (2015-02-28)
 
 
