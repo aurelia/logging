@@ -51,7 +51,8 @@
       "aurelia-framework",
       "aurelia-templating",
       "aurelia-templating-binding",
-      "aurelia-templating-resources"
+      "aurelia-templating-resources",
+      "aurelia-dependency-injection"
     ],
     "documentation": {
       "links": [

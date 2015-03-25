@@ -14,6 +14,7 @@ This library has **NO** external dependencies.
 * [aurelia-templating](https://github.com/aurelia/templating)
 * [aurelia-templating-binding](https://github.com/aurelia/templating-binding)
 * [aurelia-templating-resources](https://github.com/aurelia/templating-resources)
+* [aurelia-dependency-injection](https://github.com/aurelia/dependency-injection)
 
 ## Platform Support
 
