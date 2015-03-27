@@ -1,3 +1,11 @@
+### 0.2.7 (2015-03-27)
+
+
+#### Features
+
+* **AggregateError:** add ability to skip wrap if inner already exists ([98da4c32](http://github.com/aurelia/logging/commit/98da4c32c92ae12c654f3b3c827d48516970f174))
+
+
 ### 0.2.6 (2015-03-24)
 
 

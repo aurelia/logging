@@ -47,9 +47,15 @@ exports.addAppender = addAppender;
 */
 exports.setLevel = setLevel;
 
-function AggregateError(msg, inner) {
-  if (inner && inner.stack) {
-    msg += "\n------------------------------------------------\ninner error: " + inner.stack;
+function AggregateError(msg, inner, skipIfAlreadyAggregate) {
+  if (inner) {
+    if (inner.innerError && skipIfAlreadyAggregate) {
+      return inner;
+    }
+
+    if (inner.stack) {
+      msg += "\n------------------------------------------------\ninner error: " + inner.stack;
+    }
   }
 
   var err = new Error(msg);
