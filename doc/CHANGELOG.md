@@ -1,3 +1,11 @@
+## 0.3.0 (2015-04-09)
+
+
+#### Bug Fixes
+
+* **all:** update compiler ([ffe2e20f](http://github.com/aurelia/logging/commit/ffe2e20f0249b0cd1d7378ec42ca07df63b61ed0))
+
+
 ### 0.2.7 (2015-03-27)
 
 

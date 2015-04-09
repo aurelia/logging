@@ -1,51 +1,16 @@
-define(["exports"], function (exports) {
-  "use strict";
+define(['exports'], function (exports) {
+  'use strict';
 
-  var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
+  var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
-  var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-  /**
-   * This library is part of the Aurelia platform and contains a minimal but effective logging mechanism
-   * with support for log levels and pluggable log appenders.
-   *
-   * @module logging
-   */
-
-  /**
-  * Creates an instance of Error that aggregates and preserves an innerError.
-  *
-  * @class AggregateError
-  * @constructor
-  */
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
   exports.AggregateError = AggregateError;
-
-  /**
-  * Gets an instance of a logger by the Id used when creating.
-  *
-  * @method getLogger
-  * @param {string} id The id of the logger you wish to get an instance of.
-  * @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
-  * @for export
-  */
   exports.getLogger = getLogger;
-
-  /**
-   * Adds an appender capable of processing logs and channeling them to an output.
-   *
-   * @method addAppender
-   * @param {Object} appender An appender instance to begin processing logs with.
-   * @for export
-   */
   exports.addAppender = addAppender;
-
-  /**
-  * Sets the level of the logging for the application loggers
-  *
-  * @method setLevel
-  * @param {Number} level Matches an enum specifying the level of logging.
-  * @for export
-  */
   exports.setLevel = setLevel;
 
   function AggregateError(msg, inner, skipIfAlreadyAggregate) {
@@ -55,7 +20,7 @@ define(["exports"], function (exports) {
       }
 
       if (inner.stack) {
-        msg += "\n------------------------------------------------\ninner error: " + inner.stack;
+        msg += '\n------------------------------------------------\ninner error: ' + inner.stack;
       }
     }
 
@@ -67,14 +32,7 @@ define(["exports"], function (exports) {
     return err;
   }
 
-  /**
-  * Enum specifying the levels of the logger
-  *
-  * @property levels
-  * @type Enum
-  * @for export
-  */
-  var levels = exports.levels = {
+  var levels = {
     none: 0,
     error: 1,
     warn: 2,
@@ -82,6 +40,7 @@ define(["exports"], function (exports) {
     debug: 4
   };
 
+  exports.levels = levels;
   var loggers = {},
       logLevel = levels.none,
       appenders = [],
@@ -106,7 +65,7 @@ define(["exports"], function (exports) {
       return;
     }
 
-    log(this, "debug", arguments);
+    log(this, 'debug', arguments);
   }
 
   function info() {
@@ -114,7 +73,7 @@ define(["exports"], function (exports) {
       return;
     }
 
-    log(this, "info", arguments);
+    log(this, 'info', arguments);
   }
 
   function warn() {
@@ -122,7 +81,7 @@ define(["exports"], function (exports) {
       return;
     }
 
-    log(this, "warn", arguments);
+    log(this, 'warn', arguments);
   }
 
   function error() {
@@ -130,7 +89,7 @@ define(["exports"], function (exports) {
       return;
     }
 
-    log(this, "error", arguments);
+    log(this, 'error', arguments);
   }
 
   function connectLogger(logger) {
@@ -149,6 +108,7 @@ define(["exports"], function (exports) {
 
     return logger;
   }
+
   function getLogger(id) {
     return loggers[id] || (loggers[id] = createLogger(id));
   }
@@ -167,91 +127,33 @@ define(["exports"], function (exports) {
     logLevel = level;
   }
 
-  /**
-  * The logger is essentially responsible for having log statements that appear during debugging but are squelched
-  * when using the build tools, depending on the log level that is set.  The available levels are -
-  * 1. none
-  * 2. error
-  * 3. warn
-  * 4. info
-  * 5. debug
-  *
-  * You cannot instantiate the logger directly - you must use the getLogger method instead.
-  *
-  * @class Logger
-  * @constructor
-  */
-
-  var Logger = exports.Logger = (function () {
+  var Logger = (function () {
     function Logger(id, key) {
       _classCallCheck(this, Logger);
 
       if (key !== loggerConstructionKey) {
-        throw new Error("You cannot instantiate \"Logger\". Use the \"getLogger\" API instead.");
+        throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
       }
 
       this.id = id;
     }
 
-    _prototypeProperties(Logger, null, {
-      debug: {
-
-        /**
-         * Logs a debug message.
-         *
-         * @method debug
-         * @param {string} message The message to log
-         */
-
-        value: function debug() {},
-        writable: true,
-        configurable: true
-      },
-      info: {
-
-        /**
-         * Logs info.
-         *
-         * @method info
-         * @param {string} message The message to log
-         */
-
-        value: function info() {},
-        writable: true,
-        configurable: true
-      },
-      warn: {
-
-        /**
-         * Logs a warning.
-         *
-         * @method warn
-         * @param {string} message The message to log
-         */
-
-        value: function warn() {},
-        writable: true,
-        configurable: true
-      },
-      error: {
-
-        /**
-         * Logs an error.
-         *
-         * @method error
-         * @param {string} message The message to log
-         */
-
-        value: function error() {},
-        writable: true,
-        configurable: true
-      }
-    });
+    _createClass(Logger, [{
+      key: 'debug',
+      value: function debug() {}
+    }, {
+      key: 'info',
+      value: function info() {}
+    }, {
+      key: 'warn',
+      value: function warn() {}
+    }, {
+      key: 'error',
+      value: function error() {}
+    }]);
 
     return Logger;
   })();
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
+  exports.Logger = Logger;
 });
