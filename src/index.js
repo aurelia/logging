@@ -33,11 +33,11 @@
  /**
  * Enum specifying the levels of the logger
  *
- * @property levels
+ * @property logLevel
  * @type Enum
  * @for export
  */
-export var levels = {
+export var logLevel = {
   none: 0,
   error:1,
   warn:2,
@@ -46,7 +46,7 @@ export var levels = {
 };
 
 var loggers = {},
-    logLevel = levels.none,
+    currentLevel = logLevel.none,
     appenders = [],
     slice = Array.prototype.slice,
     loggerConstructionKey = {};
@@ -65,7 +65,7 @@ function log(logger, level, args){
 }
 
 function debug(){
-  if(logLevel < 4){
+  if(currentLevel < 4){
     return;
   }
 
@@ -73,7 +73,7 @@ function debug(){
 }
 
 function info(){
-  if(logLevel < 3){
+  if(currentLevel < 3){
     return;
   }
 
@@ -81,7 +81,7 @@ function info(){
 }
 
 function warn(){
-  if(logLevel < 2){
+  if(currentLevel < 2){
     return;
   }
 
@@ -89,7 +89,7 @@ function warn(){
 }
 
 function error(){
-  if(logLevel < 1){
+  if(currentLevel < 1){
     return;
   }
 
@@ -150,7 +150,7 @@ export function addAppender(appender){
  * @for export
  */
 export function setLevel(level){
-  logLevel = level;
+  currentLevel = level;
 }
 
 /**
