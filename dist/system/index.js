@@ -1,5 +1,5 @@
 System.register([], function (_export) {
-  var _classCallCheck, _createClass, levels, loggers, logLevel, appenders, slice, loggerConstructionKey, Logger;
+  var _classCallCheck, logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
 
   _export('AggregateError', AggregateError);
 
@@ -42,7 +42,7 @@ System.register([], function (_export) {
   }
 
   function debug() {
-    if (logLevel < 4) {
+    if (currentLevel < 4) {
       return;
     }
 
@@ -50,7 +50,7 @@ System.register([], function (_export) {
   }
 
   function info() {
-    if (logLevel < 3) {
+    if (currentLevel < 3) {
       return;
     }
 
@@ -58,7 +58,7 @@ System.register([], function (_export) {
   }
 
   function warn() {
-    if (logLevel < 2) {
+    if (currentLevel < 2) {
       return;
     }
 
@@ -66,7 +66,7 @@ System.register([], function (_export) {
   }
 
   function error() {
-    if (logLevel < 1) {
+    if (currentLevel < 1) {
       return;
     }
 
@@ -105,7 +105,7 @@ System.register([], function (_export) {
   }
 
   function setLevel(level) {
-    logLevel = level;
+    currentLevel = level;
   }
 
   return {
@@ -115,9 +115,7 @@ System.register([], function (_export) {
 
       _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
-      _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-      levels = {
+      logLevel = {
         none: 0,
         error: 1,
         warn: 2,
@@ -125,10 +123,10 @@ System.register([], function (_export) {
         debug: 4
       };
 
-      _export('levels', levels);
+      _export('logLevel', logLevel);
 
       loggers = {};
-      logLevel = levels.none;
+      currentLevel = logLevel.none;
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
@@ -144,19 +142,13 @@ System.register([], function (_export) {
           this.id = id;
         }
 
-        _createClass(Logger, [{
-          key: 'debug',
-          value: function debug() {}
-        }, {
-          key: 'info',
-          value: function info() {}
-        }, {
-          key: 'warn',
-          value: function warn() {}
-        }, {
-          key: 'error',
-          value: function error() {}
-        }]);
+        Logger.prototype.debug = function debug() {};
+
+        Logger.prototype.info = function info() {};
+
+        Logger.prototype.warn = function warn() {};
+
+        Logger.prototype.error = function error() {};
 
         return Logger;
       })();

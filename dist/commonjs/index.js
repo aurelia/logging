@@ -2,11 +2,7 @@
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+exports.__esModule = true;
 exports.AggregateError = AggregateError;
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
@@ -31,7 +27,7 @@ function AggregateError(msg, inner, skipIfAlreadyAggregate) {
   return err;
 }
 
-var levels = {
+var logLevel = {
   none: 0,
   error: 1,
   warn: 2,
@@ -39,9 +35,9 @@ var levels = {
   debug: 4
 };
 
-exports.levels = levels;
+exports.logLevel = logLevel;
 var loggers = {},
-    logLevel = levels.none,
+    currentLevel = logLevel.none,
     appenders = [],
     slice = Array.prototype.slice,
     loggerConstructionKey = {};
@@ -60,7 +56,7 @@ function log(logger, level, args) {
 }
 
 function debug() {
-  if (logLevel < 4) {
+  if (currentLevel < 4) {
     return;
   }
 
@@ -68,7 +64,7 @@ function debug() {
 }
 
 function info() {
-  if (logLevel < 3) {
+  if (currentLevel < 3) {
     return;
   }
 
@@ -76,7 +72,7 @@ function info() {
 }
 
 function warn() {
-  if (logLevel < 2) {
+  if (currentLevel < 2) {
     return;
   }
 
@@ -84,7 +80,7 @@ function warn() {
 }
 
 function error() {
-  if (logLevel < 1) {
+  if (currentLevel < 1) {
     return;
   }
 
@@ -123,7 +119,7 @@ function addAppender(appender) {
 }
 
 function setLevel(level) {
-  logLevel = level;
+  currentLevel = level;
 }
 
 var Logger = (function () {
@@ -137,19 +133,13 @@ var Logger = (function () {
     this.id = id;
   }
 
-  _createClass(Logger, [{
-    key: 'debug',
-    value: function debug() {}
-  }, {
-    key: 'info',
-    value: function info() {}
-  }, {
-    key: 'warn',
-    value: function warn() {}
-  }, {
-    key: 'error',
-    value: function error() {}
-  }]);
+  Logger.prototype.debug = function debug() {};
+
+  Logger.prototype.info = function info() {};
+
+  Logger.prototype.warn = function warn() {};
+
+  Logger.prototype.error = function error() {};
 
   return Logger;
 })();

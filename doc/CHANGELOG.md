@@ -1,3 +1,11 @@
+## 0.4.0 (2015-04-30)
+
+
+#### Bug Fixes
+
+* **all:** change levels enum to logLevel ([6d1de07c](http://github.com/aurelia/logging/commit/6d1de07c0f2a9e9e747df6f3bef4f74adf9c7074), closes [#7](http://github.com/aurelia/logging/issues/7))
+
+
 ## 0.3.0 (2015-04-09)
 
 
