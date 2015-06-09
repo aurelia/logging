@@ -1,12 +1,12 @@
 'use strict';
 
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
 exports.__esModule = true;
 exports.AggregateError = AggregateError;
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
 exports.setLevel = setLevel;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function AggregateError(msg, inner, skipIfAlreadyAggregate) {
   if (inner) {

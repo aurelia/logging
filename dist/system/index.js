@@ -1,5 +1,7 @@
 System.register([], function (_export) {
-  var _classCallCheck, logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
+  'use strict';
+
+  var logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
 
   _export('AggregateError', AggregateError);
 
@@ -8,6 +10,8 @@ System.register([], function (_export) {
   _export('addAppender', addAppender);
 
   _export('setLevel', setLevel);
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
   function AggregateError(msg, inner, skipIfAlreadyAggregate) {
     if (inner) {
@@ -111,10 +115,6 @@ System.register([], function (_export) {
   return {
     setters: [],
     execute: function () {
-      'use strict';
-
-      _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
       logLevel = {
         none: 0,
         error: 1,
