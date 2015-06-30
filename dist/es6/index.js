@@ -11,7 +11,7 @@
  * @class AggregateError
  * @constructor
  */
- export function AggregateError(msg, inner, skipIfAlreadyAggregate) {
+ export function AggregateError(msg:string, inner?:Error, skipIfAlreadyAggregate?:boolean):Error {
   if(inner){
     if(inner.innerError && skipIfAlreadyAggregate){
       return inner;
@@ -39,9 +39,9 @@
  */
 export var logLevel = {
   none: 0,
-  error:1,
-  warn:2,
-  info:3,
+  error: 1,
+  warn: 2,
+  info: 3,
   debug:4
 };
 
@@ -121,7 +121,7 @@ function createLogger(id){
  * @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
  * @for export
  */
-export function getLogger(id){
+export function getLogger(id:string):Logger{
   return loggers[id] || (loggers[id] = createLogger(id));
 }
 
@@ -132,7 +132,7 @@ export function getLogger(id){
  * @param {Object} appender An appender instance to begin processing logs with.
  * @for export
  */
-export function addAppender(appender){
+export function addAppender(appender:Object):void{
   appenders.push(appender);
 
   if(appenders.length === 1){
@@ -149,7 +149,7 @@ export function addAppender(appender){
  * @param {Number} level Matches an enum specifying the level of logging.
  * @for export
  */
-export function setLevel(level){
+export function setLevel(level:number):void{
   currentLevel = level;
 }
 
@@ -168,7 +168,7 @@ export function setLevel(level){
 * @constructor
 */
 export class Logger {
-  constructor(id, key){
+  constructor(id:string, key:Object){
     if(key !== loggerConstructionKey){
       throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
     }
@@ -182,7 +182,7 @@ export class Logger {
    * @method debug
    * @param {string} message The message to log
    */
-  debug(){}
+  debug(message:string):void{}
 
   /**
    * Logs info.
@@ -190,7 +190,7 @@ export class Logger {
    * @method info
    * @param {string} message The message to log
    */
-  info(){}
+  info(message:string):void{}
 
   /**
    * Logs a warning.
@@ -198,7 +198,7 @@ export class Logger {
    * @method warn
    * @param {string} message The message to log
    */
-  warn(){}
+  warn(message:string):void{}
 
   /**
    * Logs an error.
@@ -206,5 +206,5 @@ export class Logger {
    * @method error
    * @param {string} message The message to log
    */
-  error(){}
+  error(message:string):void{}
 }

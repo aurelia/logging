@@ -142,13 +142,13 @@ System.register([], function (_export) {
           this.id = id;
         }
 
-        Logger.prototype.debug = function debug() {};
+        Logger.prototype.debug = function debug(message) {};
 
-        Logger.prototype.info = function info() {};
+        Logger.prototype.info = function info(message) {};
 
-        Logger.prototype.warn = function warn() {};
+        Logger.prototype.warn = function warn(message) {};
 
-        Logger.prototype.error = function error() {};
+        Logger.prototype.error = function error(message) {};
 
         return Logger;
       })();
