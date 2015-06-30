@@ -12,7 +12,7 @@ declare module 'aurelia-logging' {
    * @class AggregateError
    * @constructor
    */
-  export function AggregateError(msg: string, inner: Error, skipIfAlreadyAggregate: boolean): Error;
+  export function AggregateError(msg: string, inner?: Error, skipIfAlreadyAggregate?: boolean): Error;
   
   /**
    * Enum specifying the levels of the logger
