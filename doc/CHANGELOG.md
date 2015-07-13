@@ -1,3 +1,11 @@
+### 0.6.1 (2015-07-13)
+
+
+#### Bug Fixes
+
+* **jspm:** fix jspm config. resolve #10 ([5ece2e3c](http://github.com/aurelia/logging/commit/5ece2e3cd8400fff38e6829c9a8270ae826382c0))
+
+
 ## 0.6.0 (2015-07-01)
 
 
