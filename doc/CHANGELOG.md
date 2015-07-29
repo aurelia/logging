@@ -1,3 +1,7 @@
+### 0.6.2 (2015-07-29)
+
+* Update build with better file name output
+
 ### 0.6.1 (2015-07-13)
 
 
