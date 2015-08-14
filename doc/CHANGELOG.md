@@ -1,3 +1,11 @@
+### 0.6.3 (2015-08-14)
+
+
+#### Features
+
+* **index:** add the Appender interface ([fe39b380](http://github.com/aurelia/logging/commit/fe39b380ad77d362f282a783da2f52e0706c8a44))
+
+
 ### 0.6.2 (2015-07-29)
 
 * Update build with better file name output
