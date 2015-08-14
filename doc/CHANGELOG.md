@@ -1,3 +1,11 @@
+### 0.6.4 (2015-08-14)
+
+
+#### Bug Fixes
+
+* **index:** remove methods from interfaces ([e7d0d342](http://github.com/aurelia/logging/commit/e7d0d3421e59d9964c8dde5fe01e08c2f58b5e6a))
+
+
 ### 0.6.3 (2015-08-14)
 
 

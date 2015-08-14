@@ -1,9 +1,5 @@
 declare module 'aurelia-logging' {
   export interface Appender {
-    debug(logger: Logger): undefined;
-    info(logger: Logger): undefined;
-    warn(logger: Logger): undefined;
-    error(logger: Logger): undefined;
   }
   
   /**
@@ -39,6 +35,10 @@ declare module 'aurelia-logging' {
    */
   export function getLogger(id: string): Logger;
   
+  // debug(logger : Logger, ...rest : any[]) : void;
+  // info(logger : Logger, ...rest : any[]) : void;
+  // warn(logger : Logger, ...rest : any[]) : void;
+  // error(logger : Logger, ...rest : any[]) : void;
   /**
    * Adds an appender capable of processing logs and channeling them to an output.
    *
