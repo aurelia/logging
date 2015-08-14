@@ -126,10 +126,10 @@ export function getLogger(id : string) : Logger{
 }
 
 interface Appender {
-  debug(logger : Logger, ...rest : any[]) : void;
-  info(logger : Logger, ...rest : any[]) : void;
-  warn(logger : Logger, ...rest : any[]) : void;
-  error(logger : Logger, ...rest : any[]) : void;
+  //debug(logger : Logger, ...rest : any[]) : void;
+  //info(logger : Logger, ...rest : any[]) : void;
+  //warn(logger : Logger, ...rest : any[]) : void;
+  //error(logger : Logger, ...rest : any[]) : void;
 }
 
 /**
