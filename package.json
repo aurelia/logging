@@ -26,7 +26,9 @@
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.13",
       "babel-runtime": "npm:babel-runtime@^5.1.13",
-      "core-js": "npm:core-js@^0.9.4"
+      "core-js": "npm:core-js@^0.9.4",
+      "traceur": "github:jmcriffey/bower-traceur@0.0.91",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.91"
     }
   },
   "devDependencies": {
@@ -47,7 +49,7 @@
     "karma-chrome-launcher": "^0.1.7",
     "karma-coverage": "^0.3.1",
     "karma-jasmine": "^0.3.5",
-    "karma-jspm": "^1.1.5",
+    "karma-jspm": "^2.0.1-beta.2",
     "object.assign": "^1.0.3",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2",
