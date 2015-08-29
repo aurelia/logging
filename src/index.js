@@ -103,13 +103,13 @@ function createLogger(id) {
   return logger;
 }
 
-﻿/**
- * Gets an instance of a logger by the Id used when creating.
- *
- * @method getLogger
- * @param {string} id The id of the logger you wish to get an instance of.
- * @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
- */
+/**
+* Gets an instance of a logger by the Id used when creating.
+*
+* @method getLogger
+* @param {string} id The id of the logger you wish to get an instance of.
+* @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
+*/
 export function getLogger(id: string): Logger {
   return loggers[id] || (loggers[id] = createLogger(id));
 }
@@ -122,12 +122,11 @@ interface Appender {
 }
 
 /**
- * Adds an appender capable of processing logs and channeling them to an output.
- *
- * @method addAppender
- * @param {Object} appender An appender instance to begin processing logs with.
- * @for export
- */
+* Adds an appender capable of processing logs and channeling them to an output.
+*
+* @method addAppender
+* @param {Object} appender An appender instance to begin processing logs with.
+*/
 export function addAppender(appender: Appender): void {
   appenders.push(appender);
 
@@ -138,13 +137,12 @@ export function addAppender(appender: Appender): void {
   }
 }
 
-﻿/**
- * Sets the level of the logging for the application loggers
- *
- * @method setLevel
- * @param {Number} level Matches an enum specifying the level of logging.
- * @for export
- */
+/**
+* Sets the level of the logging for the application loggers
+*
+* @method setLevel
+* @param {Number} level Matches an enum specifying the level of logging.
+*/
 export function setLevel(level : number): void {
   currentLevel = level;
 }
