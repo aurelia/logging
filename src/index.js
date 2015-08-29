@@ -1,6 +1,6 @@
- /**
- * Creates an instance of Error that aggregates and preserves an innerError.
- */
+/**
+* Creates an instance of Error that aggregates and preserves an innerError.
+*/
 export function AggregateError(message: string, innerError?: Error, skipIfAlreadyAggregate?: boolean): Error {
   if (innerError) {
     if (innerError.innerError && skipIfAlreadyAggregate) {
@@ -20,9 +20,9 @@ export function AggregateError(message: string, innerError?: Error, skipIfAlread
   return e;
 }
 
- /**
- * Enum specifying the levels of the logger
- */
+/**
+* Enum specifying the levels of the logger
+*/
 export const logLevel = {
   none: 0,
   error: 1,
