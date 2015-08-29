@@ -1,10 +1,3 @@
-/**
- * This library is part of the Aurelia platform and contains a minimal but effective logging mechanism
- * with support for log levels and pluggable log appenders.
- *
- * @module logging
- */
-
  /**
  * Creates an instance of Error that aggregates and preserves an innerError.
  */
