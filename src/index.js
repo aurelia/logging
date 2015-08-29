@@ -1,23 +1,23 @@
  /**
  * Creates an instance of Error that aggregates and preserves an innerError.
  */
- export function AggregateError(msg : string, inner? : Error, skipIfAlreadyAggregate? : boolean) : Error {
-  if(inner){
-    if(inner.innerError && skipIfAlreadyAggregate){
-      return inner;
+export function AggregateError(message: string, innerError?: Error, skipIfAlreadyAggregate?: boolean): Error {
+  if (innerError) {
+    if (innerError.innerError && skipIfAlreadyAggregate) {
+      return innerError;
     }
 
-    if(inner.stack) {
-      msg += `\n------------------------------------------------\ninner error: ${inner.stack}`;
+    if (innerError.stack) {
+      message += `\n------------------------------------------------\ninner error: ${innerError.stack}`;
     }
   }
 
-  var err = new Error(msg);
-  if (inner) {
-    err.innerError = inner;
+  let e = new Error(message);
+  if (innerError) {
+    e.innerError = innerError;
   }
 
-  return err;
+  return e;
 }
 
  /**
@@ -27,76 +27,76 @@
  * @type Enum
  * @for export
  */
-export var logLevel = {
+export const logLevel = {
   none: 0,
   error: 1,
   warn: 2,
   info: 3,
-  debug:4
+  debug: 4
 };
 
-var loggers = {},
-    currentLevel = logLevel.none,
-    appenders = [],
-    slice = Array.prototype.slice,
-    loggerConstructionKey = {};
+let loggers = {};
+let currentLevel = logLevel.none;
+let appenders = [];
+let slice = Array.prototype.slice;
+let loggerConstructionKey = {};
 
-function log(logger, level, args){
-  var i = appenders.length,
-          current;
+function log(logger, level, args) {
+  let i = appenders.length;
+  let current;
 
   args = slice.call(args);
   args.unshift(logger);
 
-  while(i--) {
+  while (i--) {
     current = appenders[i];
     current[level].apply(current, args);
   }
 }
 
-function debug(){
-  if(currentLevel < 4){
+function debug() {
+  if (currentLevel < 4) {
     return;
   }
 
   log(this, 'debug', arguments);
 }
 
-function info(){
-  if(currentLevel < 3){
+function info() {
+  if (currentLevel < 3) {
     return;
   }
 
   log(this, 'info', arguments);
 }
 
-function warn(){
-  if(currentLevel < 2){
+function warn() {
+  if (currentLevel < 2) {
     return;
   }
 
   log(this, 'warn', arguments);
 }
 
-function error(){
-  if(currentLevel < 1){
+function error() {
+  if (currentLevel < 1) {
     return;
   }
 
   log(this, 'error', arguments);
 }
 
-function connectLogger(logger){
+function connectLogger(logger) {
   logger.debug = debug;
   logger.info = info;
   logger.warn = warn;
   logger.error = error;
 }
 
-function createLogger(id){
-  var logger = new Logger(id, loggerConstructionKey);
+function createLogger(id) {
+  let logger = new Logger(id, loggerConstructionKey);
 
-  if(appenders.length) {
+  if (appenders.length) {
     connectLogger(logger);
   }
 
@@ -109,17 +109,16 @@ function createLogger(id){
  * @method getLogger
  * @param {string} id The id of the logger you wish to get an instance of.
  * @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
- * @for export
  */
-export function getLogger(id : string) : Logger{
+export function getLogger(id: string): Logger {
   return loggers[id] || (loggers[id] = createLogger(id));
 }
 
 interface Appender {
-  //debug(logger : Logger, ...rest : any[]) : void;
-  //info(logger : Logger, ...rest : any[]) : void;
-  //warn(logger : Logger, ...rest : any[]) : void;
-  //error(logger : Logger, ...rest : any[]) : void;
+  debug(logger: Logger, ...rest: any[]): void;
+  info(logger: Logger, ...rest: any[]): void;
+  warn(logger: Logger, ...rest: any[]): void;
+  error(logger: Logger, ...rest: any[]): void;
 }
 
 /**
@@ -129,11 +128,11 @@ interface Appender {
  * @param {Object} appender An appender instance to begin processing logs with.
  * @for export
  */
-export function addAppender(appender : Appender) : void {
+export function addAppender(appender: Appender): void {
   appenders.push(appender);
 
-  if(appenders.length === 1){
-    for(var key in loggers){
+  if (appenders.length === 1) {
+    for (let key in loggers) {
       connectLogger(loggers[key]);
     }
   }
@@ -146,7 +145,7 @@ export function addAppender(appender : Appender) : void {
  * @param {Number} level Matches an enum specifying the level of logging.
  * @for export
  */
-export function setLevel(level : number) : void{
+export function setLevel(level : number): void {
   currentLevel = level;
 }
 
@@ -165,8 +164,8 @@ export function setLevel(level : number) : void{
 * @constructor
 */
 export class Logger {
-  constructor(id : string, key : Object){
-    if(key !== loggerConstructionKey){
+  constructor(id: string, key: Object) {
+    if (key !== loggerConstructionKey) {
       throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
     }
 
@@ -179,7 +178,7 @@ export class Logger {
    * @method debug
    * @param {string} message The message to log
    */
-  debug(message : string) : void {}
+  debug(message: string): void {}
 
   /**
    * Logs info.
@@ -187,7 +186,7 @@ export class Logger {
    * @method info
    * @param {string} message The message to log
    */
-  info(message : string) : void {}
+  info(message: string): void {}
 
   /**
    * Logs a warning.
@@ -195,7 +194,7 @@ export class Logger {
    * @method warn
    * @param {string} message The message to log
    */
-  warn(message : string) : void {}
+  warn(message: string): void {}
 
   /**
    * Logs an error.
@@ -203,5 +202,5 @@ export class Logger {
    * @method error
    * @param {string} message The message to log
    */
-  error(message : string) : void {}
+  error(message: string): void {}
 }
