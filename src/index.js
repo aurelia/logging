@@ -7,9 +7,6 @@
 
  /**
  * Creates an instance of Error that aggregates and preserves an innerError.
- *
- * @class AggregateError
- * @constructor
  */
  export function AggregateError(msg : string, inner? : Error, skipIfAlreadyAggregate? : boolean) : Error {
   if(inner){
