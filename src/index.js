@@ -22,10 +22,6 @@ export function AggregateError(message: string, innerError?: Error, skipIfAlread
 
  /**
  * Enum specifying the levels of the logger
- *
- * @property logLevel
- * @type Enum
- * @for export
  */
 export const logLevel = {
   none: 0,
@@ -106,9 +102,8 @@ function createLogger(id) {
 /**
 * Gets an instance of a logger by the Id used when creating.
 *
-* @method getLogger
-* @param {string} id The id of the logger you wish to get an instance of.
-* @return {Logger} The instance of the logger, or creates a new logger if none exists for that Id.
+* @param id The id of the logger you wish to get an instance of.
+* @return The instance of the logger, or creates a new logger if none exists for that Id.
 */
 export function getLogger(id: string): Logger {
   return loggers[id] || (loggers[id] = createLogger(id));
@@ -124,8 +119,7 @@ interface Appender {
 /**
 * Adds an appender capable of processing logs and channeling them to an output.
 *
-* @method addAppender
-* @param {Object} appender An appender instance to begin processing logs with.
+* @param appender An appender instance to begin processing logs with.
 */
 export function addAppender(appender: Appender): void {
   appenders.push(appender);
@@ -140,26 +134,15 @@ export function addAppender(appender: Appender): void {
 /**
 * Sets the level of the logging for the application loggers
 *
-* @method setLevel
-* @param {Number} level Matches an enum specifying the level of logging.
+* @param level Matches an enum specifying the level of logging.
 */
-export function setLevel(level : number): void {
+export function setLevel(level: number): void {
   currentLevel = level;
 }
 
 /**
-* The logger is essentially responsible for having log statements that appear during debugging but are squelched
-* when using the build tools, depending on the log level that is set.  The available levels are -
-* 1. none
-* 2. error
-* 3. warn
-* 4. info
-* 5. debug
-*
+* A logger logs messages to a set of appenders, depending on the log level that is set.
 * You cannot instantiate the logger directly - you must use the getLogger method instead.
-*
-* @class Logger
-* @constructor
 */
 export class Logger {
   constructor(id: string, key: Object) {
@@ -173,32 +156,28 @@ export class Logger {
   /**
    * Logs a debug message.
    *
-   * @method debug
-   * @param {string} message The message to log
+   * @param message The message to log.
    */
   debug(message: string): void {}
 
   /**
    * Logs info.
    *
-   * @method info
-   * @param {string} message The message to log
+   * @param message The message to log.
    */
   info(message: string): void {}
 
   /**
    * Logs a warning.
    *
-   * @method warn
-   * @param {string} message The message to log
+   * @param message The message to log.
    */
   warn(message: string): void {}
 
   /**
    * Logs an error.
    *
-   * @method error
-   * @param {string} message The message to log
+   * @param message The message to log.
    */
   error(message: string): void {}
 }
