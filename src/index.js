@@ -109,10 +109,40 @@ export function getLogger(id: string): Logger {
   return loggers[id] || (loggers[id] = createLogger(id));
 }
 
+/**
+* Implemented by classes which wish to append log data to a target data store.
+*/
 interface Appender {
+  /**
+  * Appends a debug log.
+  *
+  * @param logger The source logger.
+  * @param rest The data to log.
+  */
   debug(logger: Logger, ...rest: any[]): void;
+
+  /**
+  * Appends an info log.
+  *
+  * @param logger The source logger.
+  * @param rest The data to log.
+  */
   info(logger: Logger, ...rest: any[]): void;
+
+  /**
+  * Appends a warning log.
+  *
+  * @param logger The source logger.
+  * @param rest The data to log.
+  */
   warn(logger: Logger, ...rest: any[]): void;
+
+  /**
+  * Appends an error log.
+  *
+  * @param logger The source logger.
+  * @param rest The data to log.
+  */
   error(logger: Logger, ...rest: any[]): void;
 }
 
@@ -142,9 +172,11 @@ export function setLevel(level: number): void {
 
 /**
 * A logger logs messages to a set of appenders, depending on the log level that is set.
-* You cannot instantiate the logger directly - you must use the getLogger method instead.
 */
 export class Logger {
+  /**
+  * You cannot instantiate the logger directly - you must use the getLogger method instead.
+  */
   constructor(id: string, key: Object) {
     if (key !== loggerConstructionKey) {
       throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
