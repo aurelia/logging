@@ -9,23 +9,23 @@ define(['exports'], function (exports) {
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-  function AggregateError(msg, inner, skipIfAlreadyAggregate) {
-    if (inner) {
-      if (inner.innerError && skipIfAlreadyAggregate) {
-        return inner;
+  function AggregateError(message, innerError, skipIfAlreadyAggregate) {
+    if (innerError) {
+      if (innerError.innerError && skipIfAlreadyAggregate) {
+        return innerError;
       }
 
-      if (inner.stack) {
-        msg += '\n------------------------------------------------\ninner error: ' + inner.stack;
+      if (innerError.stack) {
+        message += '\n------------------------------------------------\ninner error: ' + innerError.stack;
       }
     }
 
-    var err = new Error(msg);
-    if (inner) {
-      err.innerError = inner;
+    var e = new Error(message);
+    if (innerError) {
+      e.innerError = innerError;
     }
 
-    return err;
+    return e;
   }
 
   var logLevel = {
@@ -37,15 +37,15 @@ define(['exports'], function (exports) {
   };
 
   exports.logLevel = logLevel;
-  var loggers = {},
-      currentLevel = logLevel.none,
-      appenders = [],
-      slice = Array.prototype.slice,
-      loggerConstructionKey = {};
+  var loggers = {};
+  var currentLevel = logLevel.none;
+  var appenders = [];
+  var slice = Array.prototype.slice;
+  var loggerConstructionKey = {};
 
   function log(logger, level, args) {
-    var i = appenders.length,
-        current;
+    var i = appenders.length;
+    var current = undefined;
 
     args = slice.call(args);
     args.unshift(logger);

@@ -1,3 +1,21 @@
+## 0.7.0 (2015-09-04)
+
+
+#### Bug Fixes
+
+* **all:**
+  * remove unnecessary parts of doc comments ([b9d0f92e](http://github.com/aurelia/logging/commit/b9d0f92e39c8cf72b1f43a35ddea0a0c7d29f267))
+  * address more lint issues ([ceef9eb3](http://github.com/aurelia/logging/commit/ceef9eb3761211d75851cf1cb27f7dd42ae7789d))
+  * working on linting ([5c3f04bd](http://github.com/aurelia/logging/commit/5c3f04bd4d60401b8488ea6842762342efe93bc7))
+* **build:** update linting, testing and tools ([88398cc2](http://github.com/aurelia/logging/commit/88398cc215d75a2d90b25250b534d9b4f4e131a5))
+* **eslintrc:** adjust the rules ([fc14ab5a](http://github.com/aurelia/logging/commit/fc14ab5a8914678e65ba9a18fcc10dc639f58e04))
+
+
+#### Features
+
+* **docs:** generate api.json from .d.ts file ([bac61cfe](http://github.com/aurelia/logging/commit/bac61cfe14f700e911ec520336e7c7acc9720954))
+
+
 ### 0.6.4 (2015-08-14)
 
 
