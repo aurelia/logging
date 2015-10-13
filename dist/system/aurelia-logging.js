@@ -3,8 +3,6 @@ System.register([], function (_export) {
 
   var logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
 
-  _export('AggregateError', AggregateError);
-
   _export('getLogger', getLogger);
 
   _export('addAppender', addAppender);
@@ -12,25 +10,6 @@ System.register([], function (_export) {
   _export('setLevel', setLevel);
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  function AggregateError(message, innerError, skipIfAlreadyAggregate) {
-    if (innerError) {
-      if (innerError.innerError && skipIfAlreadyAggregate) {
-        return innerError;
-      }
-
-      if (innerError.stack) {
-        message += '\n------------------------------------------------\ninner error: ' + innerError.stack;
-      }
-    }
-
-    var e = new Error(message);
-    if (innerError) {
-      e.innerError = innerError;
-    }
-
-    return e;
-  }
 
   function log(logger, level, args) {
     var i = appenders.length;

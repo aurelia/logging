@@ -427,7 +427,7 @@
       ]
     },
     {
-      "id": 38,
+      "id": 33,
       "name": "logLevel",
       "kind": 32,
       "kindString": "Variable",
@@ -443,71 +443,7 @@
       }
     },
     {
-      "id": 33,
-      "name": "AggregateError",
-      "kind": 64,
-      "kindString": "Function",
-      "flags": {
-        "isExported": true
-      },
-      "signatures": [
-        {
-          "id": 34,
-          "name": "AggregateError",
-          "kind": 4096,
-          "kindString": "Call signature",
-          "flags": {},
-          "comment": {
-            "shortText": "Creates an instance of Error that aggregates and preserves an innerError."
-          },
-          "parameters": [
-            {
-              "id": 35,
-              "name": "message",
-              "kind": 32768,
-              "kindString": "Parameter",
-              "flags": {},
-              "type": {
-                "type": "instrinct",
-                "name": "string"
-              }
-            },
-            {
-              "id": 36,
-              "name": "innerError",
-              "kind": 32768,
-              "kindString": "Parameter",
-              "flags": {
-                "isOptional": true
-              },
-              "type": {
-                "type": "reference",
-                "name": "Error"
-              }
-            },
-            {
-              "id": 37,
-              "name": "skipIfAlreadyAggregate",
-              "kind": 32768,
-              "kindString": "Parameter",
-              "flags": {
-                "isOptional": true
-              },
-              "type": {
-                "type": "instrinct",
-                "name": "boolean"
-              }
-            }
-          ],
-          "type": {
-            "type": "reference",
-            "name": "Error"
-          }
-        }
-      ]
-    },
-    {
-      "id": 42,
+      "id": 37,
       "name": "addAppender",
       "kind": 64,
       "kindString": "Function",
@@ -516,7 +452,7 @@
       },
       "signatures": [
         {
-          "id": 43,
+          "id": 38,
           "name": "addAppender",
           "kind": 4096,
           "kindString": "Call signature",
@@ -526,7 +462,7 @@
           },
           "parameters": [
             {
-              "id": 44,
+              "id": 39,
               "name": "appender",
               "kind": 32768,
               "kindString": "Parameter",
@@ -550,7 +486,7 @@
       ]
     },
     {
-      "id": 39,
+      "id": 34,
       "name": "getLogger",
       "kind": 64,
       "kindString": "Function",
@@ -559,7 +495,7 @@
       },
       "signatures": [
         {
-          "id": 40,
+          "id": 35,
           "name": "getLogger",
           "kind": 4096,
           "kindString": "Call signature",
@@ -570,7 +506,7 @@
           },
           "parameters": [
             {
-              "id": 41,
+              "id": 36,
               "name": "id",
               "kind": 32768,
               "kindString": "Parameter",
@@ -594,7 +530,7 @@
       ]
     },
     {
-      "id": 45,
+      "id": 40,
       "name": "setLevel",
       "kind": 64,
       "kindString": "Function",
@@ -603,7 +539,7 @@
       },
       "signatures": [
         {
-          "id": 46,
+          "id": 41,
           "name": "setLevel",
           "kind": 4096,
           "kindString": "Call signature",
@@ -613,7 +549,7 @@
           },
           "parameters": [
             {
-              "id": 47,
+              "id": 42,
               "name": "level",
               "kind": 32768,
               "kindString": "Parameter",
@@ -654,17 +590,16 @@
       "title": "Variables",
       "kind": 32,
       "children": [
-        38
+        33
       ]
     },
     {
       "title": "Functions",
       "kind": 64,
       "children": [
-        33,
-        42,
-        39,
-        45
+        37,
+        34,
+        40
       ]
     }
   ]

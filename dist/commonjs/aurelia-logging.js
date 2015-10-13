@@ -1,31 +1,11 @@
 'use strict';
 
 exports.__esModule = true;
-exports.AggregateError = AggregateError;
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
 exports.setLevel = setLevel;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function AggregateError(message, innerError, skipIfAlreadyAggregate) {
-  if (innerError) {
-    if (innerError.innerError && skipIfAlreadyAggregate) {
-      return innerError;
-    }
-
-    if (innerError.stack) {
-      message += '\n------------------------------------------------\ninner error: ' + innerError.stack;
-    }
-  }
-
-  var e = new Error(message);
-  if (innerError) {
-    e.innerError = innerError;
-  }
-
-  return e;
-}
 
 var logLevel = {
   none: 0,

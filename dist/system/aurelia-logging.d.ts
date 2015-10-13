@@ -11,11 +11,6 @@ declare module 'aurelia-logging' {
   }
   
   /**
-  * Creates an instance of Error that aggregates and preserves an innerError.
-  */
-  export function AggregateError(message: string, innerError?: Error, skipIfAlreadyAggregate?: boolean): Error;
-  
-  /**
   * Enum specifying the levels of the logger
   */
   export const logLevel: any;
