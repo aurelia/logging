@@ -6,7 +6,7 @@
   "flags": {},
   "children": [
     {
-      "id": 16,
+      "id": 22,
       "name": "Logger",
       "kind": 128,
       "kindString": "Class",
@@ -18,7 +18,7 @@
       },
       "children": [
         {
-          "id": 17,
+          "id": 23,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
@@ -30,7 +30,7 @@
           },
           "signatures": [
             {
-              "id": 18,
+              "id": 24,
               "name": "new Logger",
               "kind": 16384,
               "kindString": "Constructor signature",
@@ -40,7 +40,7 @@
               },
               "parameters": [
                 {
-                  "id": 19,
+                  "id": 25,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -51,7 +51,7 @@
                   }
                 },
                 {
-                  "id": 20,
+                  "id": 26,
                   "name": "key",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -65,14 +65,14 @@
               "type": {
                 "type": "reference",
                 "name": "Logger",
-                "id": 16,
+                "id": 22,
                 "moduleName": "\"aurelia-logging\""
               }
             }
           ]
         },
         {
-          "id": 21,
+          "id": 27,
           "name": "debug",
           "kind": 2048,
           "kindString": "Method",
@@ -81,7 +81,7 @@
           },
           "signatures": [
             {
-              "id": 22,
+              "id": 28,
               "name": "debug",
               "kind": 4096,
               "kindString": "Call signature",
@@ -91,7 +91,48 @@
               },
               "parameters": [
                 {
-                  "id": 23,
+                  "id": 29,
+                  "name": "message",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {
+                    "text": "The message to log.\n"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "name": "error",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 37,
+              "name": "error",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Logs an error."
+              },
+              "parameters": [
+                {
+                  "id": 38,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -114,7 +155,7 @@
         },
         {
           "id": 30,
-          "name": "error",
+          "name": "info",
           "kind": 2048,
           "kindString": "Method",
           "flags": {
@@ -123,12 +164,12 @@
           "signatures": [
             {
               "id": 31,
-              "name": "error",
+              "name": "info",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "comment": {
-                "shortText": "Logs an error."
+                "shortText": "Logs info."
               },
               "parameters": [
                 {
@@ -154,48 +195,7 @@
           ]
         },
         {
-          "id": 24,
-          "name": "info",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
-              "id": 25,
-              "name": "info",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "comment": {
-                "shortText": "Logs info."
-              },
-              "parameters": [
-                {
-                  "id": 26,
-                  "name": "message",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "comment": {
-                    "text": "The message to log.\n"
-                  },
-                  "type": {
-                    "type": "instrinct",
-                    "name": "string"
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
-        },
-        {
-          "id": 27,
+          "id": 33,
           "name": "warn",
           "kind": 2048,
           "kindString": "Method",
@@ -204,7 +204,7 @@
           },
           "signatures": [
             {
-              "id": 28,
+              "id": 34,
               "name": "warn",
               "kind": 4096,
               "kindString": "Call signature",
@@ -214,7 +214,7 @@
               },
               "parameters": [
                 {
-                  "id": 29,
+                  "id": 35,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -241,23 +241,23 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
-            17
+            23
           ]
         },
         {
           "title": "Methods",
           "kind": 2048,
           "children": [
-            21,
+            27,
+            36,
             30,
-            24,
-            27
+            33
           ]
         }
       ]
     },
     {
-      "id": 3,
+      "id": 9,
       "name": "Appender",
       "kind": 256,
       "kindString": "Interface",
@@ -269,7 +269,7 @@
       },
       "children": [
         {
-          "id": 4,
+          "id": 10,
           "name": "debug",
           "kind": 2048,
           "kindString": "Method",
@@ -278,116 +278,8 @@
           },
           "signatures": [
             {
-              "id": 5,
-              "name": "debug",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "parameters": [
-                {
-                  "id": 6,
-                  "name": "logger",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "type": {
-                    "type": "reference",
-                    "name": "Logger",
-                    "id": 16
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
-        },
-        {
-          "id": 13,
-          "name": "error",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
-              "id": 14,
-              "name": "error",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "parameters": [
-                {
-                  "id": 15,
-                  "name": "logger",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "type": {
-                    "type": "reference",
-                    "name": "Logger",
-                    "id": 16
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
-        },
-        {
-          "id": 7,
-          "name": "info",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
-              "id": 8,
-              "name": "info",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "parameters": [
-                {
-                  "id": 9,
-                  "name": "logger",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "type": {
-                    "type": "reference",
-                    "name": "Logger",
-                    "id": 16
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
-        },
-        {
-          "id": 10,
-          "name": "warn",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
               "id": 11,
-              "name": "warn",
+              "name": "debug",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
@@ -401,7 +293,115 @@
                   "type": {
                     "type": "reference",
                     "name": "Logger",
-                    "id": 16
+                    "id": 22
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "error",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 20,
+              "name": "error",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 21,
+                  "name": "logger",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Logger",
+                    "id": 22
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "info",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 14,
+              "name": "info",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 15,
+                  "name": "logger",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Logger",
+                    "id": 22
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "warn",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 17,
+              "name": "warn",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 18,
+                  "name": "logger",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Logger",
+                    "id": 22
                   }
                 }
               ],
@@ -418,16 +418,120 @@
           "title": "Methods",
           "kind": 2048,
           "children": [
-            4,
+            10,
+            19,
             13,
-            7,
-            10
+            16
           ]
         }
       ]
     },
     {
-      "id": 33,
+      "id": 3,
+      "name": "LogLevel",
+      "kind": 256,
+      "kindString": "Interface",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 8,
+          "name": "debug",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Log all messages."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "number"
+          }
+        },
+        {
+          "id": 5,
+          "name": "error",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Log only error messages."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "number"
+          }
+        },
+        {
+          "id": 7,
+          "name": "info",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Log informational messages or above."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "number"
+          }
+        },
+        {
+          "id": 4,
+          "name": "none",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "No logging."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "number"
+          }
+        },
+        {
+          "id": 6,
+          "name": "warn",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Log warnings messages or above."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "number"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "kind": 1024,
+          "children": [
+            8,
+            5,
+            7,
+            4,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39,
       "name": "logLevel",
       "kind": 32,
       "kindString": "Variable",
@@ -438,12 +542,14 @@
         "shortText": "Enum specifying the levels of the logger"
       },
       "type": {
-        "type": "instrinct",
-        "name": "any"
+        "type": "reference",
+        "name": "LogLevel",
+        "id": 3,
+        "moduleName": "\"aurelia-logging\""
       }
     },
     {
-      "id": 37,
+      "id": 43,
       "name": "addAppender",
       "kind": 64,
       "kindString": "Function",
@@ -452,7 +558,7 @@
       },
       "signatures": [
         {
-          "id": 38,
+          "id": 44,
           "name": "addAppender",
           "kind": 4096,
           "kindString": "Call signature",
@@ -462,7 +568,7 @@
           },
           "parameters": [
             {
-              "id": 39,
+              "id": 45,
               "name": "appender",
               "kind": 32768,
               "kindString": "Parameter",
@@ -473,7 +579,7 @@
               "type": {
                 "type": "reference",
                 "name": "Appender",
-                "id": 3,
+                "id": 9,
                 "moduleName": "\"aurelia-logging\""
               }
             }
@@ -486,7 +592,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 40,
       "name": "getLogger",
       "kind": 64,
       "kindString": "Function",
@@ -495,18 +601,18 @@
       },
       "signatures": [
         {
-          "id": 35,
+          "id": 41,
           "name": "getLogger",
           "kind": 4096,
           "kindString": "Call signature",
           "flags": {},
           "comment": {
-            "shortText": "Gets an instance of a logger by the Id used when creating.",
-            "returns": "The instance of the logger, or creates a new logger if none exists for that Id.\n"
+            "shortText": "Gets the instance of a logger associated with a particular id (or creates one if it doesn't already exist).",
+            "returns": "The instance of the logger, or creates a new logger if none exists for that id.\n"
           },
           "parameters": [
             {
-              "id": 36,
+              "id": 42,
               "name": "id",
               "kind": 32768,
               "kindString": "Parameter",
@@ -523,14 +629,14 @@
           "type": {
             "type": "reference",
             "name": "Logger",
-            "id": 16,
+            "id": 22,
             "moduleName": "\"aurelia-logging\""
           }
         }
       ]
     },
     {
-      "id": 40,
+      "id": 46,
       "name": "setLevel",
       "kind": 64,
       "kindString": "Function",
@@ -539,23 +645,23 @@
       },
       "signatures": [
         {
-          "id": 41,
+          "id": 47,
           "name": "setLevel",
           "kind": 4096,
           "kindString": "Call signature",
           "flags": {},
           "comment": {
-            "shortText": "Sets the level of the logging for the application loggers"
+            "shortText": "Sets the level of logging for the application loggers."
           },
           "parameters": [
             {
-              "id": 42,
+              "id": 48,
               "name": "level",
               "kind": 32768,
               "kindString": "Parameter",
               "flags": {},
               "comment": {
-                "text": "Matches an enum specifying the level of logging.\n"
+                "text": "Matches a value of logLevel specifying the level of logging.\n"
               },
               "type": {
                 "type": "instrinct",
@@ -576,13 +682,14 @@
       "title": "Classes",
       "kind": 128,
       "children": [
-        16
+        22
       ]
     },
     {
       "title": "Interfaces",
       "kind": 256,
       "children": [
+        9,
         3
       ]
     },
@@ -590,16 +697,16 @@
       "title": "Variables",
       "kind": 32,
       "children": [
-        33
+        39
       ]
     },
     {
       "title": "Functions",
       "kind": 64,
       "children": [
-        37,
-        34,
-        40
+        43,
+        40,
+        46
       ]
     }
   ]

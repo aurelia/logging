@@ -1,4 +1,31 @@
 declare module 'aurelia-logging' {
+  export interface LogLevel {
+    
+    /**
+      * No logging.
+      */
+    none: number;
+    
+    /**
+      * Log only error messages.
+      */
+    error: number;
+    
+    /**
+      * Log warnings messages or above.
+      */
+    warn: number;
+    
+    /**
+      * Log informational messages or above.
+      */
+    info: number;
+    
+    /**
+      * Log all messages.
+      */
+    debug: number;
+  }
   
   /**
   * Implemented by classes which wish to append log data to a target data store.
@@ -13,13 +40,13 @@ declare module 'aurelia-logging' {
   /**
   * Enum specifying the levels of the logger
   */
-  export const logLevel: any;
+  export const logLevel: LogLevel;
   
   /**
-  * Gets an instance of a logger by the Id used when creating.
+  * Gets the instance of a logger associated with a particular id (or creates one if it doesn't already exist).
   *
   * @param id The id of the logger you wish to get an instance of.
-  * @return The instance of the logger, or creates a new logger if none exists for that Id.
+  * @return The instance of the logger, or creates a new logger if none exists for that id.
   */
   export function getLogger(id: string): Logger;
   
@@ -31,9 +58,9 @@ declare module 'aurelia-logging' {
   export function addAppender(appender: Appender): void;
   
   /**
-  * Sets the level of the logging for the application loggers
+  * Sets the level of logging for the application loggers.
   *
-  * @param level Matches an enum specifying the level of logging.
+  * @param level Matches a value of logLevel specifying the level of logging.
   */
   export function setLevel(level: number): void;
   
