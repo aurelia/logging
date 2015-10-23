@@ -31,10 +31,10 @@ declare module 'aurelia-logging' {
   * Implemented by classes which wish to append log data to a target data store.
   */
   export interface Appender {
-    debug(logger: Logger): void;
-    info(logger: Logger): void;
-    warn(logger: Logger): void;
-    error(logger: Logger): void;
+    debug(logger: Logger, ...rest: any[]): void;
+    info(logger: Logger, ...rest: any[]): void;
+    warn(logger: Logger, ...rest: any[]): void;
+    error(logger: Logger, ...rest: any[]): void;
   }
   
   /**
