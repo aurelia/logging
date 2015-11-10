@@ -490,6 +490,9 @@
       "flags": {
         "isExported": true
       },
+      "comment": {
+        "shortText": "Specifies the available logging levels."
+      },
       "children": [
         {
           "id": 8,
@@ -595,7 +598,7 @@
         "isExported": true
       },
       "comment": {
-        "shortText": "Enum specifying the levels of the logger"
+        "shortText": "Specifies the available logging levels."
       },
       "type": {
         "type": "reference",

@@ -1,4 +1,8 @@
 declare module 'aurelia-logging' {
+  
+  /**
+  * Specifies the available logging levels.
+  */
   export interface LogLevel {
     
     /**
@@ -38,7 +42,7 @@ declare module 'aurelia-logging' {
   }
   
   /**
-  * Enum specifying the levels of the logger
+  * Specifies the available logging levels.
   */
   export const logLevel: LogLevel;
   

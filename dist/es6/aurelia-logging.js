@@ -1,3 +1,6 @@
+/**
+* Specifies the available logging levels.
+*/
 interface LogLevel {
   /**
   * No logging.
@@ -22,7 +25,7 @@ interface LogLevel {
 }
 
 /**
-* Enum specifying the levels of the logger
+* Specifies the available logging levels.
 */
 export const logLevel: LogLevel = {
   none: 0,
