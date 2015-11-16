@@ -1,6 +1,6 @@
 {
   "name": "aurelia-logging",
-  "version": "0.9.0",
+  "version": "1.0.0-beta.1",
   "description": "A minimal but effective logging mechanism with support for log levels and pluggable log appenders.",
   "keywords": [
     "aurelia",
