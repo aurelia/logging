@@ -1,3 +1,11 @@
+## 1.1.0 (2016-01-28)
+
+
+#### Features
+
+* **all:** update for jspm and core-js ([d71d0a4a](http://github.com/aurelia/logging/commit/d71d0a4aa5db4e5697f91dc16e021c0796cf8fa5))
+
+
 ### 1.0.0-beta.1 (2015-11-15)
 
 
