@@ -17,10 +17,14 @@
     "type": "git",
     "url": "http://github.com/aurelia/logging"
   },
-  "registry": "npm",
-  "jspmPackage": true,
-  "format": "cjs",
   "jspm": {
+    "registry": "npm",
+    "jspmPackage": true,
+    "main": "aurelia-logging",
+    "format": "amd",
+    "directories": {
+      "dist": "dist/amd"
+    },
     "devDependencies": {
       "babel": "babel-core@^5.1.13",
       "babel-runtime": "^5.1.13",
