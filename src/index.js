@@ -178,6 +178,8 @@ export function setLevel(level: number): void {
 * A logger logs messages to a set of appenders, depending on the log level that is set.
 */
 export class Logger {
+  id: string;
+
   /**
   * You cannot instantiate the logger directly - you must use the getLogger method instead.
   */
