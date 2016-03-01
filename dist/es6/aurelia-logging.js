@@ -179,6 +179,11 @@ export function setLevel(level: number): void {
 */
 export class Logger {
   /**
+  * The id that the logger was created with.
+  */
+  id: string;
+
+  /**
   * You cannot instantiate the logger directly - you must use the getLogger method instead.
   */
   constructor(id: string, key: Object) {
