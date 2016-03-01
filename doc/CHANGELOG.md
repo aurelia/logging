@@ -1,3 +1,11 @@
+### 1.0.0-beta.1.1.2 (2016-03-01)
+
+
+#### Bug Fixes
+
+* **logging:** fix the interface ([6276c3b0](http://github.com/aurelia/logging/commit/6276c3b0e89e2ecb37c873f467a47499c60386ed))
+
+
 ## 1.0.0-beta.1.1.1 (2016-01-28)
 
 * fix package metadata for jspm

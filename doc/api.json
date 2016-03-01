@@ -18,7 +18,7 @@
       },
       "children": [
         {
-          "id": 27,
+          "id": 28,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
@@ -30,7 +30,7 @@
           },
           "signatures": [
             {
-              "id": 28,
+              "id": 29,
               "name": "new Logger",
               "kind": 16384,
               "kindString": "Constructor signature",
@@ -40,7 +40,7 @@
               },
               "parameters": [
                 {
-                  "id": 29,
+                  "id": 30,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -51,7 +51,7 @@
                   }
                 },
                 {
-                  "id": 30,
+                  "id": 31,
                   "name": "key",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -72,7 +72,23 @@
           ]
         },
         {
-          "id": 31,
+          "id": 27,
+          "name": "id",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "The id that the logger was created with."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "string"
+          }
+        },
+        {
+          "id": 32,
           "name": "debug",
           "kind": 2048,
           "kindString": "Method",
@@ -81,7 +97,7 @@
           },
           "signatures": [
             {
-              "id": 32,
+              "id": 33,
               "name": "debug",
               "kind": 4096,
               "kindString": "Call signature",
@@ -91,7 +107,7 @@
               },
               "parameters": [
                 {
-                  "id": 33,
+                  "id": 34,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -113,7 +129,7 @@
           ]
         },
         {
-          "id": 40,
+          "id": 41,
           "name": "error",
           "kind": 2048,
           "kindString": "Method",
@@ -122,7 +138,7 @@
           },
           "signatures": [
             {
-              "id": 41,
+              "id": 42,
               "name": "error",
               "kind": 4096,
               "kindString": "Call signature",
@@ -132,7 +148,7 @@
               },
               "parameters": [
                 {
-                  "id": 42,
+                  "id": 43,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -154,7 +170,7 @@
           ]
         },
         {
-          "id": 34,
+          "id": 35,
           "name": "info",
           "kind": 2048,
           "kindString": "Method",
@@ -163,7 +179,7 @@
           },
           "signatures": [
             {
-              "id": 35,
+              "id": 36,
               "name": "info",
               "kind": 4096,
               "kindString": "Call signature",
@@ -173,7 +189,7 @@
               },
               "parameters": [
                 {
-                  "id": 36,
+                  "id": 37,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -195,7 +211,7 @@
           ]
         },
         {
-          "id": 37,
+          "id": 38,
           "name": "warn",
           "kind": 2048,
           "kindString": "Method",
@@ -204,7 +220,7 @@
           },
           "signatures": [
             {
-              "id": 38,
+              "id": 39,
               "name": "warn",
               "kind": 4096,
               "kindString": "Call signature",
@@ -214,7 +230,7 @@
               },
               "parameters": [
                 {
-                  "id": 39,
+                  "id": 40,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -241,6 +257,13 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
+            28
+          ]
+        },
+        {
+          "title": "Properties",
+          "kind": 1024,
+          "children": [
             27
           ]
         },
@@ -248,10 +271,10 @@
           "title": "Methods",
           "kind": 2048,
           "children": [
-            31,
-            40,
-            34,
-            37
+            32,
+            41,
+            35,
+            38
           ]
         }
       ]
@@ -626,7 +649,7 @@
       ]
     },
     {
-      "id": 43,
+      "id": 44,
       "name": "logLevel",
       "kind": 32,
       "kindString": "Variable",
@@ -644,7 +667,7 @@
       }
     },
     {
-      "id": 47,
+      "id": 48,
       "name": "addAppender",
       "kind": 64,
       "kindString": "Function",
@@ -653,7 +676,7 @@
       },
       "signatures": [
         {
-          "id": 48,
+          "id": 49,
           "name": "addAppender",
           "kind": 4096,
           "kindString": "Call signature",
@@ -663,7 +686,7 @@
           },
           "parameters": [
             {
-              "id": 49,
+              "id": 50,
               "name": "appender",
               "kind": 32768,
               "kindString": "Parameter",
@@ -687,7 +710,7 @@
       ]
     },
     {
-      "id": 44,
+      "id": 45,
       "name": "getLogger",
       "kind": 64,
       "kindString": "Function",
@@ -696,7 +719,7 @@
       },
       "signatures": [
         {
-          "id": 45,
+          "id": 46,
           "name": "getLogger",
           "kind": 4096,
           "kindString": "Call signature",
@@ -707,7 +730,7 @@
           },
           "parameters": [
             {
-              "id": 46,
+              "id": 47,
               "name": "id",
               "kind": 32768,
               "kindString": "Parameter",
@@ -731,7 +754,7 @@
       ]
     },
     {
-      "id": 50,
+      "id": 51,
       "name": "setLevel",
       "kind": 64,
       "kindString": "Function",
@@ -740,7 +763,7 @@
       },
       "signatures": [
         {
-          "id": 51,
+          "id": 52,
           "name": "setLevel",
           "kind": 4096,
           "kindString": "Call signature",
@@ -750,7 +773,7 @@
           },
           "parameters": [
             {
-              "id": 52,
+              "id": 53,
               "name": "level",
               "kind": 32768,
               "kindString": "Parameter",
@@ -792,16 +815,16 @@
       "title": "Variables",
       "kind": 32,
       "children": [
-        43
+        44
       ]
     },
     {
       "title": "Functions",
       "kind": 64,
       "children": [
-        47,
-        44,
-        50
+        48,
+        45,
+        51
       ]
     }
   ]
