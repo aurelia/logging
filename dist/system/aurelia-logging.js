@@ -1,19 +1,17 @@
-System.register([], function (_export) {
-  'use strict';
+'use strict';
 
+System.register([], function (_export, _context) {
   var logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
 
-  _export('getLogger', getLogger);
-
-  _export('addAppender', addAppender);
-
-  _export('setLevel', setLevel);
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
 
   function log(logger, level, args) {
     var i = appenders.length;
-    var current = undefined;
+    var current = void 0;
 
     args = slice.call(args);
     args.unshift(logger);
@@ -73,34 +71,16 @@ System.register([], function (_export) {
     return logger;
   }
 
-  function getLogger(id) {
-    return loggers[id] || (loggers[id] = createLogger(id));
-  }
-
-  function addAppender(appender) {
-    appenders.push(appender);
-
-    if (appenders.length === 1) {
-      for (var key in loggers) {
-        connectLogger(loggers[key]);
-      }
-    }
-  }
-
-  function setLevel(level) {
-    currentLevel = level;
-  }
-
   return {
     setters: [],
     execute: function () {
-      logLevel = {
+      _export('logLevel', logLevel = {
         none: 0,
         error: 1,
         warn: 2,
         info: 3,
         debug: 4
-      };
+      });
 
       _export('logLevel', logLevel);
 
@@ -109,8 +89,31 @@ System.register([], function (_export) {
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
+      function getLogger(id) {
+        return loggers[id] || (loggers[id] = createLogger(id));
+      }
 
-      Logger = (function () {
+      _export('getLogger', getLogger);
+
+      function addAppender(appender) {
+        appenders.push(appender);
+
+        if (appenders.length === 1) {
+          for (var key in loggers) {
+            connectLogger(loggers[key]);
+          }
+        }
+      }
+
+      _export('addAppender', addAppender);
+
+      function setLevel(level) {
+        currentLevel = level;
+      }
+
+      _export('setLevel', setLevel);
+
+      _export('Logger', Logger = function () {
         function Logger(id, key) {
           _classCallCheck(this, Logger);
 
@@ -130,7 +133,7 @@ System.register([], function (_export) {
         Logger.prototype.error = function error(message) {};
 
         return Logger;
-      })();
+      }());
 
       _export('Logger', Logger);
     }

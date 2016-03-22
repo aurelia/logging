@@ -72,6 +72,9 @@ declare module 'aurelia-logging' {
   /**
   * Specifies the available logging levels.
   */
+  /**
+  * Specifies the available logging levels.
+  */
   export const logLevel: LogLevel;
   
   /**
@@ -82,6 +85,11 @@ declare module 'aurelia-logging' {
   */
   export function getLogger(id: string): Logger;
   
+  /**
+  * Adds an appender capable of processing logs and channeling them to an output.
+  *
+  * @param appender An appender instance to begin processing logs with.
+  */
   /**
   * Adds an appender capable of processing logs and channeling them to an output.
   *

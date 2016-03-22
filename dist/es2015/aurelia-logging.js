@@ -1,15 +1,5 @@
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getLogger = getLogger;
-exports.addAppender = addAppender;
-exports.setLevel = setLevel;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var logLevel = exports.logLevel = {
+export const logLevel = {
   none: 0,
   error: 1,
   warn: 2,
@@ -17,15 +7,15 @@ var logLevel = exports.logLevel = {
   debug: 4
 };
 
-var loggers = {};
-var currentLevel = logLevel.none;
-var appenders = [];
-var slice = Array.prototype.slice;
-var loggerConstructionKey = {};
+let loggers = {};
+let currentLevel = logLevel.none;
+let appenders = [];
+let slice = Array.prototype.slice;
+let loggerConstructionKey = {};
 
 function log(logger, level, args) {
-  var i = appenders.length;
-  var current = void 0;
+  let i = appenders.length;
+  let current;
 
   args = slice.call(args);
   args.unshift(logger);
@@ -76,7 +66,7 @@ function connectLogger(logger) {
 }
 
 function createLogger(id) {
-  var logger = new Logger(id, loggerConstructionKey);
+  let logger = new Logger(id, loggerConstructionKey);
 
   if (appenders.length) {
     connectLogger(logger);
@@ -85,28 +75,26 @@ function createLogger(id) {
   return logger;
 }
 
-function getLogger(id) {
+export function getLogger(id) {
   return loggers[id] || (loggers[id] = createLogger(id));
 }
 
-function addAppender(appender) {
+export function addAppender(appender) {
   appenders.push(appender);
 
   if (appenders.length === 1) {
-    for (var key in loggers) {
+    for (let key in loggers) {
       connectLogger(loggers[key]);
     }
   }
 }
 
-function setLevel(level) {
+export function setLevel(level) {
   currentLevel = level;
 }
 
-var Logger = exports.Logger = function () {
-  function Logger(id, key) {
-    _classCallCheck(this, Logger);
-
+export let Logger = class Logger {
+  constructor(id, key) {
     if (key !== loggerConstructionKey) {
       throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
     }
@@ -114,13 +102,11 @@ var Logger = exports.Logger = function () {
     this.id = id;
   }
 
-  Logger.prototype.debug = function debug(message) {};
+  debug(message) {}
 
-  Logger.prototype.info = function info(message) {};
+  info(message) {}
 
-  Logger.prototype.warn = function warn(message) {};
+  warn(message) {}
 
-  Logger.prototype.error = function error(message) {};
-
-  return Logger;
-}();
+  error(message) {}
+};
