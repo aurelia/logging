@@ -1,7 +1,7 @@
 'use strict';
 
 System.register([], function (_export, _context) {
-  var logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
+  var logLevel, loggers, appenders, slice, loggerConstructionKey, Logger;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -23,7 +23,7 @@ System.register([], function (_export, _context) {
   }
 
   function debug() {
-    if (currentLevel < 4) {
+    if (this.currentLevel < 4) {
       return;
     }
 
@@ -31,7 +31,7 @@ System.register([], function (_export, _context) {
   }
 
   function info() {
-    if (currentLevel < 3) {
+    if (this.currentLevel < 3) {
       return;
     }
 
@@ -39,7 +39,7 @@ System.register([], function (_export, _context) {
   }
 
   function warn() {
-    if (currentLevel < 2) {
+    if (this.currentLevel < 2) {
       return;
     }
 
@@ -47,7 +47,7 @@ System.register([], function (_export, _context) {
   }
 
   function error() {
-    if (currentLevel < 1) {
+    if (this.currentLevel < 1) {
       return;
     }
 
@@ -85,7 +85,6 @@ System.register([], function (_export, _context) {
       _export('logLevel', logLevel);
 
       loggers = {};
-      currentLevel = logLevel.none;
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
@@ -108,7 +107,9 @@ System.register([], function (_export, _context) {
       _export('addAppender', addAppender);
 
       function setLevel(level) {
-        currentLevel = level;
+        for (var key in loggers) {
+          loggers[key].setLevel(level);
+        }
       }
 
       _export('setLevel', setLevel);
@@ -116,6 +117,8 @@ System.register([], function (_export, _context) {
       _export('Logger', Logger = function () {
         function Logger(id, key) {
           _classCallCheck(this, Logger);
+
+          this.currentLevel = logLevel.none;
 
           if (key !== loggerConstructionKey) {
             throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
@@ -131,6 +134,10 @@ System.register([], function (_export, _context) {
         Logger.prototype.warn = function warn(message) {};
 
         Logger.prototype.error = function error(message) {};
+
+        Logger.prototype.setLevel = function setLevel(level) {
+          this.currentLevel = level;
+        };
 
         return Logger;
       }());

@@ -8,7 +8,6 @@ export const logLevel = {
 };
 
 let loggers = {};
-let currentLevel = logLevel.none;
 let appenders = [];
 let slice = Array.prototype.slice;
 let loggerConstructionKey = {};
@@ -27,7 +26,7 @@ function log(logger, level, args) {
 }
 
 function debug() {
-  if (currentLevel < 4) {
+  if (this.currentLevel < 4) {
     return;
   }
 
@@ -35,7 +34,7 @@ function debug() {
 }
 
 function info() {
-  if (currentLevel < 3) {
+  if (this.currentLevel < 3) {
     return;
   }
 
@@ -43,7 +42,7 @@ function info() {
 }
 
 function warn() {
-  if (currentLevel < 2) {
+  if (this.currentLevel < 2) {
     return;
   }
 
@@ -51,7 +50,7 @@ function warn() {
 }
 
 function error() {
-  if (currentLevel < 1) {
+  if (this.currentLevel < 1) {
     return;
   }
 
@@ -90,11 +89,15 @@ export function addAppender(appender) {
 }
 
 export function setLevel(level) {
-  currentLevel = level;
+  for (let key in loggers) {
+    loggers[key].setLevel(level);
+  }
 }
 
 export let Logger = class Logger {
   constructor(id, key) {
+    this.currentLevel = logLevel.none;
+
     if (key !== loggerConstructionKey) {
       throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
     }
@@ -109,4 +112,8 @@ export let Logger = class Logger {
   warn(message) {}
 
   error(message) {}
+
+  setLevel(level) {
+    this.currentLevel = level;
+  }
 };

@@ -98,7 +98,7 @@ declare module 'aurelia-logging' {
   export function addAppender(appender: Appender): void;
   
   /**
-  * Sets the level of logging for the application loggers.
+  * Sets the level of logging for ALL the application loggers.
   *
   * @param level Matches a value of logLevel specifying the level of logging.
   */
@@ -113,6 +113,11 @@ declare module 'aurelia-logging' {
       * The id that the logger was created with.
       */
     id: string;
+    
+    /**
+       * The logging severity level for this logger
+       */
+    currentLevel: number;
     
     /**
       * You cannot instantiate the logger directly - you must use the getLogger method instead.
@@ -146,5 +151,12 @@ declare module 'aurelia-logging' {
        * @param message The message to log.
        */
     error(message: string): void;
+    
+    /**
+       * Sets the level of logging this logger
+       *
+       * @param level Matches a value of logLevel specifying the level of logging.
+       */
+    setLevel(level: LogLevel): void;
   }
 }
