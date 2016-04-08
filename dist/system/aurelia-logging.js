@@ -127,13 +127,13 @@ System.register([], function (_export, _context) {
           this.id = id;
         }
 
-        Logger.prototype.debug = function debug(message) {};
+        Logger.prototype.debug = function debug() {};
 
-        Logger.prototype.info = function info(message) {};
+        Logger.prototype.info = function info() {};
 
-        Logger.prototype.warn = function warn(message) {};
+        Logger.prototype.warn = function warn() {};
 
-        Logger.prototype.error = function error(message) {};
+        Logger.prototype.error = function error() {};
 
         Logger.prototype.setLevel = function setLevel(level) {
           this.currentLevel = level;

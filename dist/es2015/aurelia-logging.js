@@ -105,13 +105,13 @@ export let Logger = class Logger {
     this.id = id;
   }
 
-  debug(message) {}
+  debug(...args) {}
 
-  info(message) {}
+  info(...args) {}
 
-  warn(message) {}
+  warn(...args) {}
 
-  error(message) {}
+  error(...args) {}
 
   setLevel(level) {
     this.currentLevel = level;

@@ -203,37 +203,37 @@ export class Logger {
   /**
    * Logs a debug message.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  debug(message: string): void {}
+  debug(...args:any[]): void {}
 
   /**
    * Logs info.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  info(message: string): void {}
+  info(...args:any[]): void {}
 
   /**
    * Logs a warning.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  warn(message: string): void {}
+  warn(...args:any[]): void {}
 
   /**
    * Logs an error.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  error(message: string): void {}
+  error(...args:any[]): void {}
 
   /**
    * Sets the level of logging this logger
    *
    * @param level Matches a value of logLevel specifying the level of logging.
    */
-  setLevel(level: LogLevel): void {
+  setLevel(level: number): void {
     this.currentLevel = level;
   }
 }
