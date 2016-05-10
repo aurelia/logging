@@ -96,7 +96,7 @@ export function setLevel(level) {
 export let Logger = class Logger {
   constructor(id, key) {
     if (key !== loggerConstructionKey) {
-      throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
+      throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
     }
 
     this.id = id;

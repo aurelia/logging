@@ -108,7 +108,7 @@ var Logger = exports.Logger = function () {
     _classCallCheck(this, Logger);
 
     if (key !== loggerConstructionKey) {
-      throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
+      throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
     }
 
     this.id = id;

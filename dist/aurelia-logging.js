@@ -188,7 +188,7 @@ export class Logger {
   */
   constructor(id: string, key: Object) {
     if (key !== loggerConstructionKey) {
-      throw new Error('You cannot instantiate "Logger". Use the "getLogger" API instead.');
+      throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
     }
 
     this.id = id;
