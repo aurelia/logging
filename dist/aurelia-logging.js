@@ -36,7 +36,6 @@ export const logLevel: LogLevel = {
 };
 
 let loggers = {};
-let currentLevel = logLevel.none;
 let appenders = [];
 let slice = Array.prototype.slice;
 let loggerConstructionKey = {};
@@ -55,7 +54,7 @@ function log(logger, level, args) {
 }
 
 function debug() {
-  if (currentLevel < 4) {
+  if (this.currentLevel < 4) {
     return;
   }
 
@@ -63,7 +62,7 @@ function debug() {
 }
 
 function info() {
-  if (currentLevel < 3) {
+  if (this.currentLevel < 3) {
     return;
   }
 
@@ -71,7 +70,7 @@ function info() {
 }
 
 function warn() {
-  if (currentLevel < 2) {
+  if (this.currentLevel < 2) {
     return;
   }
 
@@ -79,7 +78,7 @@ function warn() {
 }
 
 function error() {
-  if (currentLevel < 1) {
+  if (this.currentLevel < 1) {
     return;
   }
 
@@ -166,12 +165,14 @@ export function addAppender(appender: Appender): void {
 }
 
 /**
-* Sets the level of logging for the application loggers.
+* Sets the level of logging for ALL the application loggers.
 *
 * @param level Matches a value of logLevel specifying the level of logging.
 */
 export function setLevel(level: number): void {
-  currentLevel = level;
+  for (let key in loggers) {
+    loggers[key].setLevel(level);
+  }
 }
 
 /**
@@ -182,6 +183,11 @@ export class Logger {
   * The id that the logger was created with.
   */
   id: string;
+
+  /**
+   * The logging severity level for this logger
+   */
+  currentLevel : number = logLevel.none;
 
   /**
   * You cannot instantiate the logger directly - you must use the getLogger method instead.
@@ -197,28 +203,37 @@ export class Logger {
   /**
    * Logs a debug message.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  debug(message: string): void {}
+  debug(...args:any[]): void {}
 
   /**
    * Logs info.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  info(message: string): void {}
+  info(...args:any[]): void {}
 
   /**
    * Logs a warning.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  warn(message: string): void {}
+  warn(...args:any[]): void {}
 
   /**
    * Logs an error.
    *
-   * @param message The message to log.
+   * @param args the data to log
    */
-  error(message: string): void {}
+  error(...args:any[]): void {}
+
+  /**
+   * Sets the level of logging this logger
+   *
+   * @param level Matches a value of logLevel specifying the level of logging.
+   */
+  setLevel(level: number): void {
+    this.currentLevel = level;
+  }
 }

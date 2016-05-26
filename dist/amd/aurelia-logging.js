@@ -23,7 +23,6 @@ define(['exports'], function (exports) {
   };
 
   var loggers = {};
-  var currentLevel = logLevel.none;
   var appenders = [];
   var slice = Array.prototype.slice;
   var loggerConstructionKey = {};
@@ -42,7 +41,7 @@ define(['exports'], function (exports) {
   }
 
   function debug() {
-    if (currentLevel < 4) {
+    if (this.currentLevel < 4) {
       return;
     }
 
@@ -50,7 +49,7 @@ define(['exports'], function (exports) {
   }
 
   function info() {
-    if (currentLevel < 3) {
+    if (this.currentLevel < 3) {
       return;
     }
 
@@ -58,7 +57,7 @@ define(['exports'], function (exports) {
   }
 
   function warn() {
-    if (currentLevel < 2) {
+    if (this.currentLevel < 2) {
       return;
     }
 
@@ -66,7 +65,7 @@ define(['exports'], function (exports) {
   }
 
   function error() {
-    if (currentLevel < 1) {
+    if (this.currentLevel < 1) {
       return;
     }
 
@@ -105,12 +104,16 @@ define(['exports'], function (exports) {
   }
 
   function setLevel(level) {
-    currentLevel = level;
+    for (var key in loggers) {
+      loggers[key].setLevel(level);
+    }
   }
 
   var Logger = exports.Logger = function () {
     function Logger(id, key) {
       _classCallCheck(this, Logger);
+
+      this.currentLevel = logLevel.none;
 
       if (key !== loggerConstructionKey) {
         throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
@@ -119,13 +122,17 @@ define(['exports'], function (exports) {
       this.id = id;
     }
 
-    Logger.prototype.debug = function debug(message) {};
+    Logger.prototype.debug = function debug() {};
 
-    Logger.prototype.info = function info(message) {};
+    Logger.prototype.info = function info() {};
 
-    Logger.prototype.warn = function warn(message) {};
+    Logger.prototype.warn = function warn() {};
 
-    Logger.prototype.error = function error(message) {};
+    Logger.prototype.error = function error() {};
+
+    Logger.prototype.setLevel = function setLevel(level) {
+      this.currentLevel = level;
+    };
 
     return Logger;
   }();

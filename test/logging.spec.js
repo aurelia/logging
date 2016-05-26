@@ -5,6 +5,10 @@ describe('A simple log manager test', () => {
     var logger = LogManager.getLogger('test');
     expect(logger).not.toBe(null);
   });
+  it('should default to logLevel none', () => {
+    var logger = LogManager.getLogger('test2');
+    expect(logger.currentLevel).toBe(LogManager.logLevel.none);
+  });
 });
 
 describe('The log manager ', () => {
@@ -130,4 +134,54 @@ describe('The log manager ', () => {
         var attemptingToNewUpALogger = () => { var myNewLogger = new Logger(); };
         expect(attemptingToNewUpALogger).toThrow();
     });
+
+  describe('setting logLevel per individual logger instance', () =>
+  {
+    it('should not log if specific logger logLevel is none', () => {
+      //  get a new logger we can squelch individually
+      let logger2 = LogManager.getLogger('test2');
+
+      // sets log level for ALL loggers to debug
+      LogManager.setLevel(LogManager.logLevel.debug);
+
+      // set logger-specific level - turning off logging for the logger2 source
+      logger2.setLevel(LogManager.logLevel.none);
+
+      logger.debug('foo'); // this should log
+      logger2.debug('foo'); // this should not
+
+      expect(testAppender.debug.calls.count()).toBe(1);
+    });
+
+    it('can log at different levels for different loggers', () => {
+      var logger2 = LogManager.getLogger('test2');
+
+      logger.setLevel(LogManager.logLevel.error);
+      logger2.setLevel(LogManager.logLevel.debug);
+
+      logger.debug('foo');
+      logger.info('for');
+      logger.error('foo');
+      logger.warn('foo');
+      
+      logger2.debug('foo');
+
+      expect(testAppender.debug.calls.count()).toBe(1);
+      expect(testAppender.debug.calls.argsFor(0)).toEqual([jasmine.objectContaining({ id: 'test2'}), 'foo']);
+      expect(testAppender.error.calls.count()).toBe(1);
+      expect(testAppender.error.calls.argsFor(0)).toEqual([jasmine.objectContaining({ id: 'test'}), 'foo']);
+    });
+
+    it('setting LogManager log level resets any logger-specific levels', () => {
+      var logger2 = LogManager.getLogger('test2');
+
+      logger.setLevel(LogManager.logLevel.warn);
+      logger2.setLevel(LogManager.logLevel.debug);
+      // this overrides the individual log levels set above
+      LogManager.setLevel(LogManager.logLevel.error);
+
+      expect(logger2.currentLevel).toBe(LogManager.logLevel.error);
+      expect(logger.currentLevel).toBe(LogManager.logLevel.error);
+    });
+  });
 });
