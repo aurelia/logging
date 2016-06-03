@@ -3,11 +3,7 @@
 System.register([], function (_export, _context) {
   var logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
+  
 
   function log(logger, level, args) {
     var i = appenders.length;
@@ -115,7 +111,7 @@ System.register([], function (_export, _context) {
 
       _export('Logger', Logger = function () {
         function Logger(id, key) {
-          _classCallCheck(this, Logger);
+          
 
           if (key !== loggerConstructionKey) {
             throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');

@@ -7,7 +7,7 @@ exports.getLogger = getLogger;
 exports.addAppender = addAppender;
 exports.setLevel = setLevel;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 var logLevel = exports.logLevel = {
   none: 0,
@@ -105,7 +105,7 @@ function setLevel(level) {
 
 var Logger = exports.Logger = function () {
   function Logger(id, key) {
-    _classCallCheck(this, Logger);
+    
 
     if (key !== loggerConstructionKey) {
       throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
