@@ -1,12 +1,5 @@
 System.config({
   defaultJSExtensions: true,
-  transpiler: "babel",
-  babelOptions: {
-    "optional": [
-      "runtime",
-      "optimisation.modules.system"
-    ]
-  },
   paths: {
     "aurelia-logging/*": "dist/*.js",
     "github:*": "jspm_packages/github/*",
