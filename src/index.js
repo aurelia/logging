@@ -198,27 +198,31 @@ export class Logger {
    * Logs a debug message.
    *
    * @param message The message to log.
+   * @param rest The data to log.
    */
-  debug(message: string): void {}
+  debug(message: string, ...rest: any[]): void {}
 
   /**
    * Logs info.
    *
    * @param message The message to log.
+   * @param rest The data to log.
    */
-  info(message: string): void {}
+  info(message: string, ...rest: any[]): void {}
 
   /**
    * Logs a warning.
    *
    * @param message The message to log.
+   * @param rest The data to log.
    */
-  warn(message: string): void {}
+  warn(message: string, ...rest: any[]): void {}
 
   /**
    * Logs an error.
    *
    * @param message The message to log.
+   * @param rest The data to log.
    */
-  error(message: string): void {}
+  error(message: string, ...rest: any[]): void {}
 }
