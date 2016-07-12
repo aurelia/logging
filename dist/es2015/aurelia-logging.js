@@ -102,11 +102,11 @@ export let Logger = class Logger {
     this.id = id;
   }
 
-  debug(message) {}
+  debug(message, ...rest) {}
 
-  info(message) {}
+  info(message, ...rest) {}
 
-  warn(message) {}
+  warn(message, ...rest) {}
 
-  error(message) {}
+  error(message, ...rest) {}
 };
