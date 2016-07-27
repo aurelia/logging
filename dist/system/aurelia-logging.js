@@ -69,6 +69,30 @@ System.register([], function (_export, _context) {
     return logger;
   }
 
+  function getLogger(id) {
+    return loggers[id] || (loggers[id] = createLogger(id));
+  }
+
+  _export('getLogger', getLogger);
+
+  function addAppender(appender) {
+    appenders.push(appender);
+
+    if (appenders.length === 1) {
+      for (var key in loggers) {
+        connectLogger(loggers[key]);
+      }
+    }
+  }
+
+  _export('addAppender', addAppender);
+
+  function setLevel(level) {
+    currentLevel = level;
+  }
+
+  _export('setLevel', setLevel);
+
   return {
     setters: [],
     execute: function () {
@@ -87,29 +111,6 @@ System.register([], function (_export, _context) {
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
-      function getLogger(id) {
-        return loggers[id] || (loggers[id] = createLogger(id));
-      }
-
-      _export('getLogger', getLogger);
-
-      function addAppender(appender) {
-        appenders.push(appender);
-
-        if (appenders.length === 1) {
-          for (var key in loggers) {
-            connectLogger(loggers[key]);
-          }
-        }
-      }
-
-      _export('addAppender', addAppender);
-
-      function setLevel(level) {
-        currentLevel = level;
-      }
-
-      _export('setLevel', setLevel);
 
       _export('Logger', Logger = function () {
         function Logger(id, key) {
