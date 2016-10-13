@@ -187,7 +187,7 @@ export class Logger {
   /**
    * The logging severity level for this logger
    */
-  currentLevel : number = logLevel.none;
+  currentLevel: number = logLevel.none;
 
   /**
   * You cannot instantiate the logger directly - you must use the getLogger method instead.
