@@ -9,7 +9,6 @@ export var logLevel = {
 };
 
 var loggers = {};
-var currentLevel = logLevel.none;
 var appenders = [];
 var slice = Array.prototype.slice;
 var loggerConstructionKey = {};
@@ -28,7 +27,7 @@ function log(logger, level, args) {
 }
 
 function debug() {
-  if (currentLevel < 4) {
+  if (this.level < 4) {
     return;
   }
 
@@ -36,7 +35,7 @@ function debug() {
 }
 
 function info() {
-  if (currentLevel < 3) {
+  if (this.level < 3) {
     return;
   }
 
@@ -44,7 +43,7 @@ function info() {
 }
 
 function warn() {
-  if (currentLevel < 2) {
+  if (this.level < 2) {
     return;
   }
 
@@ -52,7 +51,7 @@ function warn() {
 }
 
 function error() {
-  if (currentLevel < 1) {
+  if (this.level < 1) {
     return;
   }
 
@@ -91,12 +90,16 @@ export function addAppender(appender) {
 }
 
 export function setLevel(level) {
-  currentLevel = level;
+  for (var key in loggers) {
+    loggers[key].setLevel(level);
+  }
 }
 
 export var Logger = function () {
   function Logger(id, key) {
     
+
+    this.level = logLevel.none;
 
     if (key !== loggerConstructionKey) {
       throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
@@ -112,6 +115,10 @@ export var Logger = function () {
   Logger.prototype.warn = function warn(message) {};
 
   Logger.prototype.error = function error(message) {};
+
+  Logger.prototype.setLevel = function setLevel(level) {
+    this.level = level;
+  };
 
   return Logger;
 }();

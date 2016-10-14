@@ -1,3 +1,9 @@
+# 1.1.0
+
+### Features
+
+* Individual loggers now have a `level` property that can be used to override the default log level.
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/aurelia/logging/compare/1.0.0-rc.1.0.1...v1.0.0) (2016-07-27)
 

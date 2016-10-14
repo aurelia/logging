@@ -3,7 +3,7 @@
 System.register([], function (_export, _context) {
   "use strict";
 
-  var logLevel, loggers, currentLevel, appenders, slice, loggerConstructionKey, Logger;
+  var logLevel, loggers, appenders, slice, loggerConstructionKey, Logger;
 
   
 
@@ -21,7 +21,7 @@ System.register([], function (_export, _context) {
   }
 
   function debug() {
-    if (currentLevel < 4) {
+    if (this.level < 4) {
       return;
     }
 
@@ -29,7 +29,7 @@ System.register([], function (_export, _context) {
   }
 
   function info() {
-    if (currentLevel < 3) {
+    if (this.level < 3) {
       return;
     }
 
@@ -37,7 +37,7 @@ System.register([], function (_export, _context) {
   }
 
   function warn() {
-    if (currentLevel < 2) {
+    if (this.level < 2) {
       return;
     }
 
@@ -45,7 +45,7 @@ System.register([], function (_export, _context) {
   }
 
   function error() {
-    if (currentLevel < 1) {
+    if (this.level < 1) {
       return;
     }
 
@@ -88,7 +88,9 @@ System.register([], function (_export, _context) {
   _export('addAppender', addAppender);
 
   function setLevel(level) {
-    currentLevel = level;
+    for (var key in loggers) {
+      loggers[key].setLevel(level);
+    }
   }
 
   _export('setLevel', setLevel);
@@ -107,7 +109,6 @@ System.register([], function (_export, _context) {
       _export('logLevel', logLevel);
 
       loggers = {};
-      currentLevel = logLevel.none;
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
@@ -115,6 +116,8 @@ System.register([], function (_export, _context) {
       _export('Logger', Logger = function () {
         function Logger(id, key) {
           
+
+          this.level = logLevel.none;
 
           if (key !== loggerConstructionKey) {
             throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
@@ -130,6 +133,10 @@ System.register([], function (_export, _context) {
         Logger.prototype.warn = function warn(message) {};
 
         Logger.prototype.error = function error(message) {};
+
+        Logger.prototype.setLevel = function setLevel(level) {
+          this.level = level;
+        };
 
         return Logger;
       }());
