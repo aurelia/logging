@@ -7,7 +7,7 @@ describe('A simple log manager test', () => {
   });
   it('should default to logLevel none', () => {
     var logger = LogManager.getLogger('test2');
-    expect(logger.currentLevel).toBe(LogManager.logLevel.none);
+    expect(logger.level).toBe(LogManager.logLevel.none);
   });
 });
 
@@ -163,7 +163,7 @@ describe('The log manager ', () => {
       logger.info('for');
       logger.error('foo');
       logger.warn('foo');
-      
+
       logger2.debug('foo');
 
       expect(testAppender.debug.calls.count()).toBe(1);
@@ -180,8 +180,8 @@ describe('The log manager ', () => {
       // this overrides the individual log levels set above
       LogManager.setLevel(LogManager.logLevel.error);
 
-      expect(logger2.currentLevel).toBe(LogManager.logLevel.error);
-      expect(logger.currentLevel).toBe(LogManager.logLevel.error);
+      expect(logger2.level).toBe(LogManager.logLevel.error);
+      expect(logger.level).toBe(LogManager.logLevel.error);
     });
   });
 });

@@ -54,7 +54,7 @@ function log(logger, level, args) {
 }
 
 function debug() {
-  if (this.currentLevel < 4) {
+  if (this.level < 4) {
     return;
   }
 
@@ -62,7 +62,7 @@ function debug() {
 }
 
 function info() {
-  if (this.currentLevel < 3) {
+  if (this.level < 3) {
     return;
   }
 
@@ -70,7 +70,7 @@ function info() {
 }
 
 function warn() {
-  if (this.currentLevel < 2) {
+  if (this.level < 2) {
     return;
   }
 
@@ -78,7 +78,7 @@ function warn() {
 }
 
 function error() {
-  if (this.currentLevel < 1) {
+  if (this.level < 1) {
     return;
   }
 
@@ -187,7 +187,7 @@ export class Logger {
   /**
    * The logging severity level for this logger
    */
-  currentLevel: number = logLevel.none;
+  level: number = logLevel.none;
 
   /**
   * You cannot instantiate the logger directly - you must use the getLogger method instead.
@@ -238,6 +238,6 @@ export class Logger {
    * @param level Matches a value of logLevel specifying the level of logging.
    */
   setLevel(level: LogLevel): void {
-    this.currentLevel = level;
+    this.level = level;
   }
 }
