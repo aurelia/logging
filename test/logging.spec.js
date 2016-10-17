@@ -183,5 +183,11 @@ describe('The log manager ', () => {
       expect(logger2.level).toBe(LogManager.logLevel.error);
       expect(logger.level).toBe(LogManager.logLevel.error);
     });
+
+    it('carries a global logLevel with which all created loggers are initialized', () => {
+      LogManager.setLevel(LogManager.logLevel.debug);
+      var logger2 = LogManager.getLogger('test2');
+      expect(logger2.level).toBe(LogManager.logLevel.debug);
+    });
   });
 });
