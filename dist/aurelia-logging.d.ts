@@ -156,9 +156,9 @@ export declare class Logger {
   error(message: string, ...rest: any[]): void;
   
   /**
-     * Sets the level of logging this logger
+     * Sets the level of logging for this logger instance
      *
      * @param level Matches a value of logLevel specifying the level of logging.
      */
-  setLevel(level: LogLevel): void;
+  setLevel(level: number): void;
 }

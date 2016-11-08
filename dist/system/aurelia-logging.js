@@ -3,7 +3,7 @@
 System.register([], function (_export, _context) {
   "use strict";
 
-  var logLevel, loggers, appenders, slice, loggerConstructionKey, Logger;
+  var logLevel, loggers, appenders, slice, loggerConstructionKey, globalDefaultLevel, Logger;
 
   
 
@@ -61,6 +61,7 @@ System.register([], function (_export, _context) {
 
   function createLogger(id) {
     var logger = new Logger(id, loggerConstructionKey);
+    logger.setLevel(globalDefaultLevel);
 
     if (appenders.length) {
       connectLogger(logger);
@@ -88,6 +89,7 @@ System.register([], function (_export, _context) {
   _export('addAppender', addAppender);
 
   function setLevel(level) {
+    globalDefaultLevel = level;
     for (var key in loggers) {
       loggers[key].setLevel(level);
     }
@@ -112,6 +114,7 @@ System.register([], function (_export, _context) {
       appenders = [];
       slice = Array.prototype.slice;
       loggerConstructionKey = {};
+      globalDefaultLevel = logLevel.none;
 
       _export('Logger', Logger = function () {
         function Logger(id, key) {

@@ -21,6 +21,7 @@ var loggers = {};
 var appenders = [];
 var slice = Array.prototype.slice;
 var loggerConstructionKey = {};
+var globalDefaultLevel = logLevel.none;
 
 function log(logger, level, args) {
   var i = appenders.length;
@@ -76,6 +77,7 @@ function connectLogger(logger) {
 
 function createLogger(id) {
   var logger = new Logger(id, loggerConstructionKey);
+  logger.setLevel(globalDefaultLevel);
 
   if (appenders.length) {
     connectLogger(logger);
@@ -99,6 +101,7 @@ function addAppender(appender) {
 }
 
 function setLevel(level) {
+  globalDefaultLevel = level;
   for (var key in loggers) {
     loggers[key].setLevel(level);
   }

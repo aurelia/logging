@@ -1,3 +1,14 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/aurelia/logging/compare/1.1.0...v1.1.1) (2016-11-08)
+
+
+### Bug Fixes
+
+* **logging:** carry a globalDefaultLevel with which subsequent loggers are created ([ec9af2a](https://github.com/aurelia/logging/commit/ec9af2a))
+* **logging:** relax type on Logger.setLevel() for compatibility with TypeScript ([d52bec2](https://github.com/aurelia/logging/commit/d52bec2))
+
+
+
 # 1.1.0
 
 ### Features

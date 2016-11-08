@@ -40,6 +40,7 @@ let loggers = {};
 let appenders = [];
 let slice = Array.prototype.slice;
 let loggerConstructionKey = {};
+let globalDefaultLevel = logLevel.none;
 
 function log(logger, level, args) {
   let i = appenders.length;
@@ -95,6 +96,7 @@ function connectLogger(logger) {
 
 function createLogger(id) {
   let logger = new Logger(id, loggerConstructionKey);
+  logger.setLevel(globalDefaultLevel);
 
   if (appenders.length) {
     connectLogger(logger);
@@ -171,6 +173,7 @@ export function addAppender(appender: Appender): void {
 * @param level Matches a value of logLevel specifying the level of logging.
 */
 export function setLevel(level: number): void {
+  globalDefaultLevel = level;
   for (let key in loggers) {
     loggers[key].setLevel(level);
   }
@@ -234,11 +237,11 @@ export class Logger {
   error(message: string, ...rest: any[]): void {}
 
   /**
-   * Sets the level of logging this logger
+   * Sets the level of logging for this logger instance
    *
    * @param level Matches a value of logLevel specifying the level of logging.
    */
-  setLevel(level: LogLevel): void {
+  setLevel(level: number): void {
     this.level = level;
   }
 }
