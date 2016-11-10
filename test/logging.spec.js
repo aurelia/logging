@@ -135,6 +135,13 @@ describe('The log manager ', () => {
         expect(attemptingToNewUpALogger).toThrow();
     });
 
+  it('should be able to return the global logLevel', () => {
+      LogManager.setLevel(LogManager.logLevel.debug);
+      var globalLogLevel = LogManager.getLevel();
+
+      expect(globalLogLevel).toEqual( LogManager.logLevel.debug);
+  });
+
   describe('setting logLevel per individual logger instance', () =>
   {
     it('should not log if specific logger logLevel is none', () => {
