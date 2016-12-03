@@ -98,6 +98,10 @@ export function setLevel(level) {
   }
 }
 
+export function getLevel() {
+  return globalDefaultLevel;
+}
+
 export var Logger = function () {
   function Logger(id, key) {
     

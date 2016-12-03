@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
 exports.setLevel = setLevel;
+exports.getLevel = getLevel;
 
 
 
@@ -105,6 +106,10 @@ function setLevel(level) {
   for (var key in loggers) {
     loggers[key].setLevel(level);
   }
+}
+
+function getLevel() {
+  return globalDefaultLevel;
 }
 
 var Logger = exports.Logger = function () {

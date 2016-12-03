@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/aurelia/logging/compare/1.1.1...v1.2.0) (2016-12-03)
+
+
+### Features
+
+* **logging:** Allow global logLevel to be returned ([1c61077](https://github.com/aurelia/logging/commit/1c61077))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/aurelia/logging/compare/1.1.0...v1.1.1) (2016-11-08)
 

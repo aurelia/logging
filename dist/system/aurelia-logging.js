@@ -97,6 +97,12 @@ System.register([], function (_export, _context) {
 
   _export('setLevel', setLevel);
 
+  function getLevel() {
+    return globalDefaultLevel;
+  }
+
+  _export('getLevel', getLevel);
+
   return {
     setters: [],
     execute: function () {

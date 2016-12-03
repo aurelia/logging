@@ -97,6 +97,10 @@ export function setLevel(level) {
   }
 }
 
+export function getLevel() {
+  return globalDefaultLevel;
+}
+
 export let Logger = class Logger {
   constructor(id, key) {
     this.level = logLevel.none;

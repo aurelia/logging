@@ -104,6 +104,13 @@ export declare function addAppender(appender: Appender): void;
 export declare function setLevel(level: number): void;
 
 /**
+* Gets the level of logging of ALL the application loggers.
+*
+* @return The logLevel value used in all loggers.
+*/
+export declare function getLevel(): number;
+
+/**
 * A logger logs messages to a set of appenders, depending on the log level that is set.
 */
 export declare class Logger {
