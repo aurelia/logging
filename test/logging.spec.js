@@ -35,6 +35,13 @@ describe('The log manager ', () => {
       LogManager.setLevel(LogManager.logLevel.none);
     });
 
+  it('should remove the test appender', () => {
+    LogManager.setLevel(LogManager.logLevel.debug);
+    LogManager.removeAppender(testAppender);
+    logger.debug('foo');
+      expect(testAppender.debug.calls.count()).toBe(0)
+  });
+  
   it('should call only call debug when logLevel is debug', () => {
       LogManager.setLevel(LogManager.logLevel.debug);
       logger.debug('foo');
