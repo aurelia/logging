@@ -167,6 +167,14 @@ export function addAppender(appender: Appender): void {
 }
 
 /**
+* Removes an appender
+* @param appender An appender that has been added previously.
+*/
+export function removeAppender(appender: Appender): void {
+  appenders = appenders.filter(a => a !== appender)
+}
+
+/**
 * Sets the level of logging for ALL the application loggers.
 *
 * @param level Matches a value of logLevel specifying the level of logging.
