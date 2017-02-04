@@ -37,71 +37,37 @@ export const logLevel: LogLevel = {
 
 let loggers = {};
 let appenders = [];
-let slice = Array.prototype.slice;
-let loggerConstructionKey = {};
 let globalDefaultLevel = logLevel.none;
 
-function log(logger, level, args) {
-  let i = appenders.length;
-  let current;
-
-  args = slice.call(args);
-  args.unshift(logger);
-
-  while (i--) {
-    current = appenders[i];
-    current[level].apply(current, args);
-  }
+function appendArgs() {  
+  return [this, ...arguments];
 }
 
-function debug() {
-  if (this.level < 4) {
-    return;
-  }
-
-  log(this, 'debug', arguments);
+function logFactory(level) {
+  const threshold = logLevel[level];  
+  return function() {
+    // In this function, this === logger
+    if (this.level < threshold) {
+      return;
+    }
+    // We don't want to disable optimizations (such as inlining) in this function
+    // so we do the arguments manipulation in another function.
+    // Note that Function#apply is very special for V8.
+    const args = appendArgs.apply(this, arguments);
+    let i = appenders.length;
+    while (i--) {
+      appenders[i][level](...args);
+    }
+  };
 }
 
-function info() {
-  if (this.level < 3) {
-    return;
-  }
-
-  log(this, 'info', arguments);
-}
-
-function warn() {
-  if (this.level < 2) {
-    return;
-  }
-
-  log(this, 'warn', arguments);
-}
-
-function error() {
-  if (this.level < 1) {
-    return;
-  }
-
-  log(this, 'error', arguments);
-}
-
-function connectLogger(logger) {
-  logger.debug = debug;
-  logger.info = info;
-  logger.warn = warn;
-  logger.error = error;
-}
-
-function createLogger(id) {
-  let logger = new Logger(id, loggerConstructionKey);
-  logger.setLevel(globalDefaultLevel);
-
-  if (appenders.length) {
-    connectLogger(logger);
-  }
-
-  return logger;
+function connectLoggers() {
+  Object.assign(Logger.prototype, {
+    debug: logFactory('debug'),
+    info: logFactory('info'),
+    warn: logFactory('warn'),
+    error: logFactory('error'),
+  });
 }
 
 /**
@@ -111,7 +77,7 @@ function createLogger(id) {
 * @return The instance of the logger, or creates a new logger if none exists for that id.
 */
 export function getLogger(id: string): Logger {
-  return loggers[id] || (loggers[id] = createLogger(id));
+  return loggers[id] || new Logger(id);
 }
 
 /**
@@ -157,12 +123,8 @@ interface Appender {
 * @param appender An appender instance to begin processing logs with.
 */
 export function addAppender(appender: Appender): void {
-  appenders.push(appender);
-
-  if (appenders.length === 1) {
-    for (let key in loggers) {
-      connectLogger(loggers[key]);
-    }
+  if (appenders.push(appender) === 1) {
+    connectLoggers();
   }
 }
 
@@ -207,17 +169,20 @@ export class Logger {
   /**
    * The logging severity level for this logger
    */
-  level: number = logLevel.none;
+  level: number;
 
   /**
   * You cannot instantiate the logger directly - you must use the getLogger method instead.
   */
-  constructor(id: string, key: Object) {
-    if (key !== loggerConstructionKey) {
-      throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
+  constructor(id: string) {
+    let cached = loggers[id];
+    if (cached) {
+      return cached;
     }
 
+    loggers[id] = this;
     this.id = id;
+    this.level = globalDefaultLevel;
   }
 
   /**
