@@ -39,12 +39,12 @@ let loggers = {};
 let appenders = [];
 let globalDefaultLevel = logLevel.none;
 
-function appendArgs() {  
+function appendArgs() {
   return [this, ...arguments];
 }
 
 function logFactory(level) {
-  const threshold = logLevel[level];  
+  const threshold = logLevel[level];
   return function() {
     // In this function, this === logger
     if (this.level < threshold) {
@@ -66,7 +66,7 @@ function connectLoggers() {
     debug: logFactory('debug'),
     info: logFactory('info'),
     warn: logFactory('warn'),
-    error: logFactory('error'),
+    error: logFactory('error')
   });
 }
 
@@ -133,7 +133,7 @@ export function addAppender(appender: Appender): void {
 * @param appender An appender that has been added previously.
 */
 export function removeAppender(appender: Appender): void {
-  appenders = appenders.filter(a => a !== appender)
+  appenders = appenders.filter(a => a !== appender);
 }
 
 /**
