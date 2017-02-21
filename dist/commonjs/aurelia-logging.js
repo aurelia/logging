@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getLogger = getLogger;
 exports.addAppender = addAppender;
+exports.removeAppender = removeAppender;
 exports.setLevel = setLevel;
 exports.getLevel = getLevel;
 
@@ -20,85 +21,52 @@ var logLevel = exports.logLevel = {
 
 var loggers = {};
 var appenders = [];
-var slice = Array.prototype.slice;
-var loggerConstructionKey = {};
 var globalDefaultLevel = logLevel.none;
 
-function log(logger, level, args) {
-  var i = appenders.length;
-  var current = void 0;
-
-  args = slice.call(args);
-  args.unshift(logger);
-
-  while (i--) {
-    current = appenders[i];
-    current[level].apply(current, args);
-  }
+function appendArgs() {
+  return [this].concat(Array.prototype.slice.call(arguments));
 }
 
-function debug() {
-  if (this.level < 4) {
-    return;
-  }
+function logFactory(level) {
+  var threshold = logLevel[level];
+  return function () {
+    if (this.level < threshold) {
+      return;
+    }
 
-  log(this, 'debug', arguments);
+    var args = appendArgs.apply(this, arguments);
+    var i = appenders.length;
+    while (i--) {
+      var _appenders$i;
+
+      (_appenders$i = appenders[i])[level].apply(_appenders$i, args);
+    }
+  };
 }
 
-function info() {
-  if (this.level < 3) {
-    return;
-  }
-
-  log(this, 'info', arguments);
-}
-
-function warn() {
-  if (this.level < 2) {
-    return;
-  }
-
-  log(this, 'warn', arguments);
-}
-
-function error() {
-  if (this.level < 1) {
-    return;
-  }
-
-  log(this, 'error', arguments);
-}
-
-function connectLogger(logger) {
-  logger.debug = debug;
-  logger.info = info;
-  logger.warn = warn;
-  logger.error = error;
-}
-
-function createLogger(id) {
-  var logger = new Logger(id, loggerConstructionKey);
-  logger.setLevel(globalDefaultLevel);
-
-  if (appenders.length) {
-    connectLogger(logger);
-  }
-
-  return logger;
+function connectLoggers() {
+  Object.assign(Logger.prototype, {
+    debug: logFactory('debug'),
+    info: logFactory('info'),
+    warn: logFactory('warn'),
+    error: logFactory('error')
+  });
 }
 
 function getLogger(id) {
-  return loggers[id] || (loggers[id] = createLogger(id));
+  return loggers[id] || new Logger(id);
 }
 
 function addAppender(appender) {
-  appenders.push(appender);
-
-  if (appenders.length === 1) {
-    for (var key in loggers) {
-      connectLogger(loggers[key]);
-    }
+  if (appenders.push(appender) === 1) {
+    connectLoggers();
   }
+}
+
+function removeAppender(appender) {
+  appenders = appenders.filter(function (a) {
+    return a !== appender;
+  });
 }
 
 function setLevel(level) {
@@ -113,16 +81,17 @@ function getLevel() {
 }
 
 var Logger = exports.Logger = function () {
-  function Logger(id, key) {
+  function Logger(id) {
     
 
-    this.level = logLevel.none;
-
-    if (key !== loggerConstructionKey) {
-      throw new Error('Cannot instantiate "Logger". Use "getLogger" instead.');
+    var cached = loggers[id];
+    if (cached) {
+      return cached;
     }
 
+    loggers[id] = this;
     this.id = id;
+    this.level = globalDefaultLevel;
   }
 
   Logger.prototype.debug = function debug(message) {};
