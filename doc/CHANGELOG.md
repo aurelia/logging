@@ -1,3 +1,13 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/aurelia/logging/compare/1.3.0...v1.3.1) (2017-03-26)
+
+
+### Bug Fixes
+
+* **logging:** restore ES5 compatibility ([70bb834](https://github.com/aurelia/logging/commit/70bb834))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/aurelia/logging/compare/1.2.0...v1.3.0) (2017-02-21)
 

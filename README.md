@@ -13,8 +13,6 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 This library can be used in the **browser** as well as on the **server**.
 
-When used alone in pre-ES6 environments, this library requires an `Object.assign` polyfill (or import `aurelia-polyfills`).
-
 ## Building The Code
 
 To build the code, follow these steps.

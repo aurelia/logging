@@ -31,12 +31,11 @@ function logFactory(level) {
 }
 
 function connectLoggers() {
-  Object.assign(Logger.prototype, {
-    debug: logFactory('debug'),
-    info: logFactory('info'),
-    warn: logFactory('warn'),
-    error: logFactory('error')
-  });
+  let proto = Logger.prototype;
+  proto.debug = logFactory('debug');
+  proto.info = logFactory('info');
+  proto.warn = logFactory('warn');
+  proto.error = logFactory('error');
 }
 
 export function getLogger(id) {
