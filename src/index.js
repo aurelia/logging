@@ -62,12 +62,10 @@ function logFactory(level) {
 }
 
 function connectLoggers() {
-  Object.assign(Logger.prototype, {
-    debug: logFactory('debug'),
-    info: logFactory('info'),
-    warn: logFactory('warn'),
-    error: logFactory('error')
-  });
+  Logger.prototype.debug = logFactory('debug')
+  Logger.prototype.info = logFactory('info')
+  Logger.prototype.warn = logFactory('warn')
+  Logger.prototype.error = logFactory('error')
 }
 
 /**
