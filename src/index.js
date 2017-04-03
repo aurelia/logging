@@ -62,11 +62,11 @@ function logFactory(level) {
 }
 
 function connectLoggers() {
-  let proto = Logger.prototype;
-  proto.debug = logFactory('debug');
-  proto.info = logFactory('info');
-  proto.warn = logFactory('warn');
-  proto.error = logFactory('error');
+  const levels = ['debug', 'info', 'warn', 'error'];
+  for (let i = 0, { length } = levels; i < length; i++) {
+    const level = levels[i];
+    Logger.prototype[level] = logFactory(level);
+  }
 }
 
 /**
