@@ -35,6 +35,19 @@ export const logLevel: LogLevel = {
   debug: 4
 };
 
+let logSource = false;
+let loggerName = 'Logger';
+
+/**
+ * Specifies whether to append source location to the log.
+ * @param enable Append or not append
+ * @param loggerClassName Optional. Name of the logger. This is used to identify which line calls the logger.
+ */
+export function logSourceLocation(enable = true, loggerClassName = loggerName) {
+  logSource = enable;
+  loggerName = loggerClassName;
+}
+
 let loggers = {};
 let appenders = [];
 let globalDefaultLevel = logLevel.none;
@@ -54,11 +67,27 @@ function logFactory(level) {
     // so we do the arguments manipulation in another function.
     // Note that Function#apply is very special for V8.
     const args = appendArgs.apply(this, arguments);
+    if (logSource) {
+      args.push(getSourceLine(level));
+    }
+
     let i = appenders.length;
     while (i--) {
       appenders[i][level](...args);
     }
   };
+}
+
+function getSourceLine(level) {
+  const e = new Error();
+  if (!e.stack) {
+    return undefined;
+  }
+
+  const lines = e.stack.split('\n');
+
+  const lineIndex = lines.findIndex(v => v.indexOf(`${loggerName}.eval [as ${level}]`) >= 0) + 1;
+  return lines[lineIndex];
 }
 
 function connectLoggers() {
@@ -190,7 +219,7 @@ export class Logger {
    * @param message The message to log.
    * @param rest The data to log.
    */
-  debug(message: string, ...rest: any[]): void {}
+  debug(message: string, ...rest: any[]): void { }
 
   /**
    * Logs info.
@@ -198,7 +227,7 @@ export class Logger {
    * @param message The message to log.
    * @param rest The data to log.
    */
-  info(message: string, ...rest: any[]): void {}
+  info(message: string, ...rest: any[]): void { }
 
   /**
    * Logs a warning.
@@ -206,7 +235,7 @@ export class Logger {
    * @param message The message to log.
    * @param rest The data to log.
    */
-  warn(message: string, ...rest: any[]): void {}
+  warn(message: string, ...rest: any[]): void { }
 
   /**
    * Logs an error.
@@ -214,7 +243,7 @@ export class Logger {
    * @param message The message to log.
    * @param rest The data to log.
    */
-  error(message: string, ...rest: any[]): void {}
+  error(message: string, ...rest: any[]): void { }
 
   /**
    * Sets the level of logging for this logger instance
