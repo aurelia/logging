@@ -2,38 +2,40 @@ import * as LogManager from '../src/index';
 
 describe('A simple log manager test', () => {
   it('should return a logger', () => {
-    var logger = LogManager.getLogger('test');
+    const logger = LogManager.getLogger('test');
     expect(logger).not.toBe(null);
   });
   it('should default to logLevel none', () => {
-    var logger = LogManager.getLogger('test2');
+    const logger = LogManager.getLogger('test2');
     expect(logger.level).toBe(LogManager.logLevel.none);
   });
 });
 
 describe('The log manager ', () => {
-    var logName = 'test', logger, testAppender;
+  const logName = 'test';
+  let logger;
+  let testAppender;
 
-    class TestAppender {
-        debug(args) { }
-        info(args){}
-        warn(args){}
-        error(args){}
-    }
+  class TestAppender {
+    debug(args) { }
+    info(args) { }
+    warn(args) { }
+    error(args) { }
+  }
 
-    beforeEach(() => {
-      testAppender = new TestAppender();
+  beforeEach(() => {
+    testAppender = new TestAppender();
 
-      spyOn(testAppender, 'debug');
-      spyOn(testAppender, 'info');
-      spyOn(testAppender, 'warn');
-      spyOn(testAppender, 'error');
+    spyOn(testAppender, 'debug');
+    spyOn(testAppender, 'info');
+    spyOn(testAppender, 'warn');
+    spyOn(testAppender, 'error');
 
-      LogManager.addAppender(testAppender);
+    LogManager.addAppender(testAppender);
 
-      logger = LogManager.getLogger(logName);
-      LogManager.setLevel(LogManager.logLevel.none);
-    });
+    logger = LogManager.getLogger(logName);
+    LogManager.setLevel(LogManager.logLevel.none);
+  });
 
   it('should remove the test appender', () => {
     LogManager.setLevel(LogManager.logLevel.debug);
@@ -43,114 +45,114 @@ describe('The log manager ', () => {
   });
   
   it('should call only call debug when logLevel is debug', () => {
-      LogManager.setLevel(LogManager.logLevel.debug);
-      logger.debug('foo');
+    LogManager.setLevel(LogManager.logLevel.debug);
+    logger.debug('foo');
 
-      LogManager.setLevel(LogManager.logLevel.info);
-      logger.debug('foo');
+    LogManager.setLevel(LogManager.logLevel.info);
+    logger.debug('foo');
 
-      LogManager.setLevel(LogManager.logLevel.warn);
-      logger.debug('foo');
+    LogManager.setLevel(LogManager.logLevel.warn);
+    logger.debug('foo');
 
-      LogManager.setLevel(LogManager.logLevel.error);
-      logger.debug('foo');
+    LogManager.setLevel(LogManager.logLevel.error);
+    logger.debug('foo');
 
-      LogManager.setLevel(LogManager.logLevel.none);
-      logger.debug('foo');
+    LogManager.setLevel(LogManager.logLevel.none);
+    logger.debug('foo');
 
-      expect(testAppender.debug.calls.count()).toBe(1)
+    expect(testAppender.debug.calls.count()).toBe(1);
   });
 
   it('should call only call info when logLevel is debug or info', () => {
-      LogManager.setLevel(LogManager.logLevel.debug);
-      logger.info('foo');
+    LogManager.setLevel(LogManager.logLevel.debug);
+    logger.info('foo');
 
-      LogManager.setLevel(LogManager.logLevel.info);
-      logger.info('foo');
+    LogManager.setLevel(LogManager.logLevel.info);
+    logger.info('foo');
 
-      LogManager.setLevel(LogManager.logLevel.warn);
-      logger.info('foo');
+    LogManager.setLevel(LogManager.logLevel.warn);
+    logger.info('foo');
 
-      LogManager.setLevel(LogManager.logLevel.error);
-      logger.info('foo');
+    LogManager.setLevel(LogManager.logLevel.error);
+    logger.info('foo');
 
-      LogManager.setLevel(LogManager.logLevel.none);
-      logger.info('foo');
+    LogManager.setLevel(LogManager.logLevel.none);
+    logger.info('foo');
 
-      expect(testAppender.info.calls.count()).toBe(2)
+    expect(testAppender.info.calls.count()).toBe(2);
   });
 
   it('should call only call warn when logLevel is debug, info, or warn', () => {
-      LogManager.setLevel(LogManager.logLevel.debug);
-      logger.warn('foo');
+    LogManager.setLevel(LogManager.logLevel.debug);
+    logger.warn('foo');
 
-      LogManager.setLevel(LogManager.logLevel.info);
-      logger.warn('foo');
+    LogManager.setLevel(LogManager.logLevel.info);
+    logger.warn('foo');
 
-      LogManager.setLevel(LogManager.logLevel.warn);
-      logger.warn('foo');
+    LogManager.setLevel(LogManager.logLevel.warn);
+    logger.warn('foo');
 
-      LogManager.setLevel(LogManager.logLevel.error);
-      logger.warn('foo');
+    LogManager.setLevel(LogManager.logLevel.error);
+    logger.warn('foo');
 
-      LogManager.setLevel(LogManager.logLevel.none);
-      logger.warn('foo');
+    LogManager.setLevel(LogManager.logLevel.none);
+    logger.warn('foo');
 
-      expect(testAppender.warn.calls.count()).toBe(3)
+    expect(testAppender.warn.calls.count()).toBe(3);
   });
 
   it('should call only call error when logLevel is debug, info, warn, or error', () => {
-      LogManager.setLevel(LogManager.logLevel.debug);
-      logger.error('foo');
+    LogManager.setLevel(LogManager.logLevel.debug);
+    logger.error('foo');
 
-      LogManager.setLevel(LogManager.logLevel.info);
-      logger.error('foo');
+    LogManager.setLevel(LogManager.logLevel.info);
+    logger.error('foo');
 
-      LogManager.setLevel(LogManager.logLevel.warn);
-      logger.error('foo');
+    LogManager.setLevel(LogManager.logLevel.warn);
+    logger.error('foo');
 
-      LogManager.setLevel(LogManager.logLevel.error);
-      logger.error('foo');
+    LogManager.setLevel(LogManager.logLevel.error);
+    logger.error('foo');
 
-      LogManager.setLevel(LogManager.logLevel.none);
-      logger.error('foo');
+    LogManager.setLevel(LogManager.logLevel.none);
+    logger.error('foo');
 
-      expect(testAppender.error.calls.count()).toBe(4)
+    expect(testAppender.error.calls.count()).toBe(4);
   });
 
   it('should pass arguments to the appender', () => {
-      LogManager.setLevel(LogManager.logLevel.debug);
-      logger.debug(123);
+    LogManager.setLevel(LogManager.logLevel.debug);
+    logger.debug(123);
 
-      expect(testAppender.debug).toHaveBeenCalledWith( logger, 123);
+    expect(testAppender.debug).toHaveBeenCalledWith(logger, 123);
   });
 
   it('should pass multiple arguments to the appender', () => {
-      var objectToLog = {
-          id: 1,
-          name: 'John'
-      };
+    const objectToLog = {
+      id: 1,
+      name: 'John'
+    };
 
-      LogManager.setLevel(LogManager.logLevel.debug);
-      logger.debug(123, objectToLog);
+    LogManager.setLevel(LogManager.logLevel.debug);
+    logger.debug(123, objectToLog);
 
-      expect(testAppender.debug).toHaveBeenCalledWith( logger, 123, objectToLog);
+    expect(testAppender.debug).toHaveBeenCalledWith(logger, 123, objectToLog);
   });
 
-    it('should throw an exception if the Logger class is newed up by the developer', () => {
-        var attemptingToNewUpALogger = () => { var myNewLogger = new Logger(); };
-        expect(attemptingToNewUpALogger).toThrow();
-    });
+  it('should throw an exception if the Logger class is newed up by the developer', () => {
+    // eslint-disable-next-line no-unused-vars
+    const attemptingToNewUpALogger = () => { const myNewLogger = new Logger(); };
+    expect(attemptingToNewUpALogger).toThrow();
+  });
 
   it('should be able to return the global logLevel', () => {
-      LogManager.setLevel(LogManager.logLevel.debug);
-      var globalLogLevel = LogManager.getLevel();
+    LogManager.setLevel(LogManager.logLevel.debug);
+    const globalLogLevel = LogManager.getLevel();
 
-      expect(globalLogLevel).toEqual( LogManager.logLevel.debug);
+    expect(globalLogLevel).toEqual(LogManager.logLevel.debug);
   });
 
-  describe('setting logLevel per individual logger instance', () =>
-  {
+  describe('setting logLevel per individual logger instance', () => {
     it('should not log if specific logger logLevel is none', () => {
       //  get a new logger we can squelch individually
       let logger2 = LogManager.getLogger('test2');
@@ -168,7 +170,7 @@ describe('The log manager ', () => {
     });
 
     it('can log at different levels for different loggers', () => {
-      var logger2 = LogManager.getLogger('test2');
+      const logger2 = LogManager.getLogger('test2');
 
       logger.setLevel(LogManager.logLevel.error);
       logger2.setLevel(LogManager.logLevel.debug);
@@ -181,13 +183,13 @@ describe('The log manager ', () => {
       logger2.debug('foo');
 
       expect(testAppender.debug.calls.count()).toBe(1);
-      expect(testAppender.debug.calls.argsFor(0)).toEqual([jasmine.objectContaining({ id: 'test2'}), 'foo']);
+      expect(testAppender.debug.calls.argsFor(0)).toEqual([jasmine.objectContaining({ id: 'test2' }), 'foo']);
       expect(testAppender.error.calls.count()).toBe(1);
-      expect(testAppender.error.calls.argsFor(0)).toEqual([jasmine.objectContaining({ id: 'test'}), 'foo']);
+      expect(testAppender.error.calls.argsFor(0)).toEqual([jasmine.objectContaining({ id: 'test' }), 'foo']);
     });
 
     it('setting LogManager log level resets any logger-specific levels', () => {
-      var logger2 = LogManager.getLogger('test2');
+      const logger2 = LogManager.getLogger('test2');
 
       logger.setLevel(LogManager.logLevel.warn);
       logger2.setLevel(LogManager.logLevel.debug);
@@ -200,8 +202,18 @@ describe('The log manager ', () => {
 
     it('carries a global logLevel with which all created loggers are initialized', () => {
       LogManager.setLevel(LogManager.logLevel.debug);
-      var logger2 = LogManager.getLogger('test2');
+      const logger2 = LogManager.getLogger('test2');
       expect(logger2.level).toBe(LogManager.logLevel.debug);
+    });
+  });
+
+  describe('Log source location', () => {
+    it('should log the previous line', () => {
+      LogManager.setLevel(LogManager.logLevel.debug);
+      let logger2 = LogManager.getLogger('sourceLoc');
+      LogManager.logSourceLocation();
+      logger2.info('info msg');
+      expect(testAppender.info.calls.argsFor(0)[2]).toContain('logging.spec');
     });
   });
 });
