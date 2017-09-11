@@ -29,17 +29,44 @@ describe('The log manager ', () => {
       spyOn(testAppender, 'warn');
       spyOn(testAppender, 'error');
 
+      LogManager.clearAppenders();
       LogManager.addAppender(testAppender);
 
       logger = LogManager.getLogger(logName);
       LogManager.setLevel(LogManager.logLevel.none);
     });
 
+  describe('when calling getAppenders ', () => {
+    it('should return an array of added appenders', () => {
+      const testAppender2 = new TestAppender();
+      LogManager.addAppender(testAppender2);
+      const appenders = LogManager.getAppenders();
+      expect(appenders instanceof Array).toBeTruthy();
+      expect(appenders).toEqual([testAppender, testAppender2]);
+    });
+
+    it('should not expose the internal appenders array', () => {
+      LogManager.getAppenders().push(new TestAppender());
+      expect(LogManager.getAppenders()).toEqual([testAppender]);
+    });
+  });
+
+  it('should remove all appenders when calling clearAppenders', () => {
+    LogManager.addAppender(new TestAppender());
+    expect(LogManager.getAppenders().length).toBe(2);
+    LogManager.clearAppenders();
+    expect(LogManager.getAppenders().length).toBe(0);
+  });
+
   it('should remove the test appender', () => {
     LogManager.setLevel(LogManager.logLevel.debug);
     LogManager.removeAppender(testAppender);
     logger.debug('foo');
-      expect(testAppender.debug.calls.count()).toBe(0)
+    expect(testAppender.debug.calls.count()).toBe(0);
+  });
+
+  it('should not add logLevel "none" as a method of Logger.', () => {
+    expect(logger.none).toBeUndefined();
   });
   
   it('should call only call debug when logLevel is debug', () => {
@@ -58,7 +85,7 @@ describe('The log manager ', () => {
       LogManager.setLevel(LogManager.logLevel.none);
       logger.debug('foo');
 
-      expect(testAppender.debug.calls.count()).toBe(1)
+      expect(testAppender.debug.calls.count()).toBe(1);
   });
 
   it('should call only call info when logLevel is debug or info', () => {
@@ -77,7 +104,7 @@ describe('The log manager ', () => {
       LogManager.setLevel(LogManager.logLevel.none);
       logger.info('foo');
 
-      expect(testAppender.info.calls.count()).toBe(2)
+      expect(testAppender.info.calls.count()).toBe(2);
   });
 
   it('should call only call warn when logLevel is debug, info, or warn', () => {
@@ -96,7 +123,7 @@ describe('The log manager ', () => {
       LogManager.setLevel(LogManager.logLevel.none);
       logger.warn('foo');
 
-      expect(testAppender.warn.calls.count()).toBe(3)
+      expect(testAppender.warn.calls.count()).toBe(3);
   });
 
   it('should call only call error when logLevel is debug, info, warn, or error', () => {
@@ -115,7 +142,7 @@ describe('The log manager ', () => {
       LogManager.setLevel(LogManager.logLevel.none);
       logger.error('foo');
 
-      expect(testAppender.error.calls.count()).toBe(4)
+      expect(testAppender.error.calls.count()).toBe(4);
   });
 
   it('should pass arguments to the appender', () => {
