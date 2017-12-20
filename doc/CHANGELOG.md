@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/aurelia/logging/compare/1.3.1...v1.4.0) (2017-12-20)
+
+
+### Features
+
+* **log-manager:** add custom log levels ([9b5b245](https://github.com/aurelia/logging/commit/9b5b245)), closes [#33](https://github.com/aurelia/logging/issues/33)
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/aurelia/logging/compare/1.3.0...v1.3.1) (2017-03-26)
 

@@ -28,6 +28,11 @@ export declare interface LogLevel {
     * Log all messages.
     */
   debug: number;
+  
+  /**
+    * Additional log levels defined at runtime.
+    */
+  [level: string]: number;
 }
 
 /**
@@ -97,10 +102,35 @@ export declare function getLogger(id: string): Logger;
 export declare function addAppender(appender: Appender): void;
 
 /**
-* Removes an appender
+* Removes an appender.
 * @param appender An appender that has been added previously.
 */
 export declare function removeAppender(appender: Appender): void;
+
+/**
+ * Gets an array of all appenders.
+ */
+export declare function getAppenders(): any;
+
+/**
+ * Removes all appenders.
+ */
+export declare function clearAppenders(): void;
+
+/**
+ * Adds a custom log level that will be added as an additional method to Logger.
+ * Logger will call the corresponding method on any appenders that support it.
+ *
+ * @param name The name for the new log level.
+ * @param value The numeric severity value for the level (higher is more severe).
+ */
+export declare function addCustomLevel(name: string, value: number): void;
+
+/**
+ * Removes a custom log level.
+ * @param name The name of a custom log level that has been added previously.
+ */
+export declare function removeCustomLevel(name: string): void;
 
 /**
 * Sets the level of logging for ALL the application loggers.
