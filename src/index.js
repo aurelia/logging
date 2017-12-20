@@ -44,7 +44,7 @@ let loggers = {};
 let appenders = [];
 let globalDefaultLevel = logLevel.none;
 
-const standardLevels = ["none", "error", "warn", "info", "debug"];
+const standardLevels = ['none', 'error', 'warn', 'info', 'debug'];
 function isStandardLevel(level: string) {
   return standardLevels.filter(l => l === level).length > 0;
 }
@@ -98,11 +98,10 @@ function connectLoggers() {
   let proto = Logger.prototype;
   for (let level in logLevel) {
     if (isStandardLevel(level)) {
-      if (level !== "none") {
+      if (level !== 'none') {
         proto[level] = logFactory(level);
       }
-    }
-    else {
+    } else {
       proto[level] = logFactoryCustom(level);
     }
   }
@@ -111,7 +110,7 @@ function connectLoggers() {
 function disconnectLoggers() {
   let proto = Logger.prototype;
   for (let level in logLevel) {
-    if (level !== "none") {
+    if (level !== 'none') {
       proto[level] = function() { };
     }
   }
@@ -210,15 +209,17 @@ export function addCustomLevel(name: string, value: number): void {
   if (logLevel[name] !== undefined) {
     throw Error(`Log level "${name}" already exists.`);
   }
+
   if (isNaN(value)) {
-    throw Error("Value must be a number.");
+    throw Error('Value must be a number.');
   }
+
   logLevel[name] = value;
+
   if (appenders.length > 0) {
     //Reinitialize the Logger prototype with the new method.
     connectLoggers();
-  }
-  else {
+  } else {
     //Add the custom level as a noop by default.
     Logger.prototype[name] = function() { };
   }
@@ -229,10 +230,14 @@ export function addCustomLevel(name: string, value: number): void {
  * @param name The name of a custom log level that has been added previously.
  */
 export function removeCustomLevel(name: string): void {
-  if (logLevel[name] === undefined)
+  if (logLevel[name] === undefined) {
     return;
-  if (isStandardLevel(name))
+  }
+
+  if (isStandardLevel(name)) {
     throw Error(`Built-in log level "${name}" cannot be removed.`);
+  }
+
   delete logLevel[name];
   delete Logger.prototype[name];
 }
