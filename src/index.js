@@ -331,4 +331,11 @@ export class Logger {
   setLevel(level: number): void {
     this.level = level;
   }
+
+  /**
+   * Returns if the logger is in debug mode or not.
+   */
+  isDebugEnabled(): boolean {
+    return this.level === logLevel.debug;
+  }
 }
