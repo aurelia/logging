@@ -1,3 +1,13 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/aurelia/logging/compare/1.4.0...1.5.0) (2018-06-12)
+
+
+### Features
+
+* **logging:** Allow isDebugEnabled to be returned ([9e7d571](https://github.com/aurelia/logging/commit/9e7d571)), closes [#41](https://github.com/aurelia/logging/issues/41)
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/aurelia/logging/compare/1.3.1...v1.4.0) (2017-12-20)
 

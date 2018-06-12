@@ -203,6 +203,10 @@ System.register([], function (_export, _context) {
           this.level = level;
         };
 
+        Logger.prototype.isDebugEnabled = function isDebugEnabled() {
+          return this.level === logLevel.debug;
+        };
+
         return Logger;
       }());
 

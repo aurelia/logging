@@ -100,7 +100,7 @@ export function clearAppenders() {
 
 export function addCustomLevel(name, value) {
   if (logLevel[name] !== undefined) {
-    throw Error(`Log level "${ name }" already exists.`);
+    throw Error(`Log level "${name}" already exists.`);
   }
 
   if (isNaN(value)) {
@@ -122,7 +122,7 @@ export function removeCustomLevel(name) {
   }
 
   if (isStandardLevel(name)) {
-    throw Error(`Built-in log level "${ name }" cannot be removed.`);
+    throw Error(`Built-in log level "${name}" cannot be removed.`);
   }
 
   delete logLevel[name];
@@ -162,5 +162,9 @@ export let Logger = class Logger {
 
   setLevel(level) {
     this.level = level;
+  }
+
+  isDebugEnabled() {
+    return this.level === logLevel.debug;
   }
 };

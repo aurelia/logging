@@ -204,4 +204,9 @@ export declare class Logger {
      * @param level Matches a value of logLevel specifying the level of logging.
      */
   setLevel(level: number): void;
+  
+  /**
+     * Returns if the logger is in debug mode or not.
+     */
+  isDebugEnabled(): boolean;
 }
