@@ -176,6 +176,17 @@ describe('The log manager ', () => {
       expect(globalLogLevel).toEqual( LogManager.logLevel.debug);
   });
 
+  it('should be able to tell if the log level is debug', () => {
+    LogManager.setLevel(LogManager.logLevel.debug);
+    var isDebugEnabledAtDebugLevel = logger.isDebugEnabled();
+
+    LogManager.setLevel(LogManager.logLevel.warn);
+    var isDebugEnabledAtWarnLevel = logger.isDebugEnabled();
+
+    expect(isDebugEnabledAtDebugLevel).toEqual(true);
+    expect(isDebugEnabledAtWarnLevel).toEqual(false);
+  });
+
   describe('setting logLevel per individual logger instance', () =>
   {
     it('should not log if specific logger logLevel is none', () => {
