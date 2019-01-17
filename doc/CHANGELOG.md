@@ -1,3 +1,8 @@
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/aurelia/logging/compare/1.5.0...1.5.1) (2019-01-17)
+
+* Add module field to package.json
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/aurelia/logging/compare/1.4.0...1.5.0) (2018-06-12)
 
