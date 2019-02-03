@@ -13,12 +13,20 @@
   "license": "MIT",
   "author": "Rob Eisenberg <rob@bluespire.com> (http://robeisenberg.com/)",
   "main": "dist/commonjs/aurelia-logging.js",
-  "module": "dist/es2015/aurelia-logging.js",
+  "module": "dist/native-modules/aurelia-logging.js",
   "typings": "dist/aurelia-logging.d.ts",
   "repository": {
     "type": "git",
     "url": "http://github.com/aurelia/logging"
   },
+  "files": [
+    "dist",
+    "doc",
+    "src",
+    "typings.json",
+    "README.md",
+    "LICENSE"
+  ],
   "jspm": {
     "registry": "npm",
     "jspmPackage": true,
