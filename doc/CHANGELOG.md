@@ -1,5 +1,5 @@
 <a name="1.5.2"></a>
-## [1.5.2](https://github.com/aurelia/logging/compare/1.5.1...1.5.2) (2019-02-03)
+## [1.5.2](https://github.com/aurelia/logging/compare/1.5.1...1.5.2) (2019-02-04)
 
 
 ### Bug Fixes

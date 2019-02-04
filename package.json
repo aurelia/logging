@@ -39,7 +39,6 @@
     "directories": {
       "dist": "dist/amd"
     },
-    "dependencies": {},
     "devDependencies": {
       "babel": "babel-core@^5.1.13",
       "babel-runtime": "^5.1.13",
@@ -98,8 +97,5 @@
     "documentation": {
       "articles": []
     }
-  },
-  "dependencies": {
-    "jspm": "^0.16.53"
   }
 }
