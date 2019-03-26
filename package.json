@@ -1,6 +1,6 @@
 {
   "name": "aurelia-logging",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A minimal but effective logging mechanism with support for log levels and pluggable log appenders.",
   "keywords": [
     "aurelia",
@@ -34,7 +34,6 @@
   ],
   "jspm": {
     "registry": "npm",
-    "jspmPackage": true,
     "main": "aurelia-logging",
     "format": "amd",
     "directories": {
